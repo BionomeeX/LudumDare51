@@ -5,9 +5,9 @@ namespace LudumDare51
     public class Node : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _nextNode;
+        private Node _nextNode;
 
-        public GameObject NextNode => _nextNode;
+        public Node NextNode => _nextNode;
 
         private void OnDrawGizmos()
         {
