@@ -13,9 +13,12 @@ namespace LudumDare51
 
         private Rigidbody2D _rb;
 
+        private int _health;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _health = _info.BaseHealth;
         }
 
         private void FixedUpdate()
@@ -29,6 +32,15 @@ namespace LudumDare51
             if (Vector2.Distance(transform.position, _nextNode.transform.position) < .1f)
             {
                 _nextNode = _nextNode.NextNode;
+            }
+        }
+
+        public void TakeDamage(int damage)
+        {
+            _health -= damage;
+            if (_health <= 0)
+            {
+                Destroy(gameObject);
             }
         }
     }

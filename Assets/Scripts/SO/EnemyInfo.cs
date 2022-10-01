@@ -6,5 +6,6 @@ namespace LudumDare51.SO
     public class EnemyInfo : ScriptableObject
     {
         public float Speed;
+        public int BaseHealth;
     }
 }
