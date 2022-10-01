@@ -24,13 +24,7 @@ namespace LudumDare51
             if (_canShoot)
             {
                 _canShoot = false;
-                while (_enemiesInRange.Count > 0)
-                {
-                    if (_enemiesInRange[0].gameObject == null)
-                    {
-                        _enemiesInRange.RemoveAt(0);
-                    }
-                }
+                _enemiesInRange.RemoveAll(x => x.gameObject == null);
                 if (_enemiesInRange.Count > 0)
                 {
                     var bullet = Instantiate(_info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
