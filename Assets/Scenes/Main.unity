@@ -19541,6 +19541,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5089570204296182550, guid: 7df972a4dcd23914888121260d9244ff, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089570204296182550, guid: 7df972a4dcd23914888121260d9244ff, type: 3}
       propertyPath: m_TagString
       value: Goal
       objectReference: {fileID: 0}
@@ -19595,6 +19599,14 @@ PrefabInstance:
     - target: {fileID: 5089570204337144796, guid: 7df972a4dcd23914888121260d9244ff, type: 3}
       propertyPath: m_Name
       value: Eater
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089570204337144796, guid: 7df972a4dcd23914888121260d9244ff, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089570205130288824, guid: 7df972a4dcd23914888121260d9244ff, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5089570205130288824, guid: 7df972a4dcd23914888121260d9244ff, type: 3}
       propertyPath: m_TagString
