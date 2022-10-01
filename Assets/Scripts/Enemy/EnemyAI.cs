@@ -16,6 +16,7 @@ namespace LudumDare51.Enemy
 
         private int _health;
         public bool IsAlive { private set; get; } = true;
+        public bool _isBeingEater = false;
 
         private void Awake()
         {
@@ -31,14 +32,30 @@ namespace LudumDare51.Enemy
 
         private void FixedUpdate()
         {
-            var targetPos = NextNode.transform.position + Offset;
+            var targetPos = NextNode.transform.position + (_isBeingEater ? Vector3.zero : Offset);
             targetPos.x -= transform.position.x;
             targetPos.y -= transform.position.y;
             var angle = Mathf.Atan2(targetPos.y, targetPos.x);
             _rb.velocity = Info.Speed * Time.fixedDeltaTime * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
-            if (Vector2.Distance(transform.position, NextNode.transform.position + Offset) <= .1f)
+            if (Vector2.Distance(transform.position, targetPos) <= .1f)
             {
-                NextNode = NextNode.NextNode;
+                if (NextNode.NextNode != null)
+                {
+                    NextNode = NextNode.NextNode;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (!IsAlive && collision.CompareTag("Goal"))
+            {
+                _isBeingEater = true;
+                NextNode = collision.GetComponentInParent<Eater>().Goal;
             }
         }
 
