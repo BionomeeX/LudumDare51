@@ -1,9 +1,9 @@
 using LudumDare51.SO;
 using UnityEngine;
 
-namespace LudumDare51
+namespace LudumDare51.Enemy
 {
-    public class Enemy : MonoBehaviour
+    public class EnemyAI : MonoBehaviour
     {
         [SerializeField]
         private Node _nextNode;

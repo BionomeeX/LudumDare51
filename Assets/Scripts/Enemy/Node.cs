@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LudumDare51
+namespace LudumDare51.Enemy
 {
     public class Node : MonoBehaviour
     {

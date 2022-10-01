@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LudumDare51.Enemy;
+using UnityEngine;
 
 namespace LudumDare51.SO
 {
@@ -7,5 +8,6 @@ namespace LudumDare51.SO
     {
         public float Speed;
         public int BaseHealth;
+        public EnemyType Type;
     }
 }
