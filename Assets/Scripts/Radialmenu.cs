@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -68,40 +69,29 @@ namespace LudumDare51
             return sr.bounds.Contains(posOnTheWorld);
         }
 
-        private int WhichButtonWasClicked(Vector3 posOnTheWorld)
+        private GameObject WhichButtonWasClicked(Vector3 posOnTheWorld)
         {
-            for (int i = 0; i < _buttons.Count; ++i)
-            {
-                if (IsTheButtonHere(_buttons[i], posOnTheWorld))
-                {
-                    return i;
-                }
-            }
-            return -1;
+            return _buttons.FirstOrDefault(x => IsTheButtonHere(x, posOnTheWorld));
         }
 
-
-        public void Click(InputAction.CallbackContext value)
+        public void Click()
         {
-            if (value.performed)
+            var pos = Mouse.current.position.ReadValue();
+
+            var posOnTheWorld = _cam.ScreenToWorldPoint(
+                new Vector3(
+                    pos[0],
+                    pos[1],
+                    _cam.nearClipPlane
+                )
+            );
+
+            // get which button was clicked
+            var button = WhichButtonWasClicked(posOnTheWorld);
+            if (button != null)
             {
-                var pos = Mouse.current.position.ReadValue();
-
-                var posOnTheWorld = _cam.ScreenToWorldPoint(
-                    new Vector3(
-                        pos[0],
-                        pos[1],
-                        _cam.nearClipPlane
-                    )
-                );
-
-                // get which button was clicked
-                int indexButton = WhichButtonWasClicked(posOnTheWorld);
-                Debug.Log($"Button {indexButton} clicked !");
+                Debug.Log($"Button {button.GetInstanceID()} clicked !");
             }
-            // in any cases
-            _parent.Active = true;
-            gameObject.SetActive(false);
         }
     }
 }
