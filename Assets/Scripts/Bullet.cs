@@ -7,7 +7,7 @@ namespace LudumDare51
         public float Speed { set; private get; }
         public Vector2 Target { set; private get; }
 
-        private void Awake()
+        private void Start()
         {
             var targetPos = Target;
             targetPos.x -= transform.position.x;
