@@ -1,4 +1,5 @@
 ﻿using LudumDare51.Enemy;
+using LudumDare51.SO;
 using UnityEngine;
 
 namespace LudumDare51.Tower
@@ -7,8 +8,7 @@ namespace LudumDare51.Tower
     {
         public float Speed { set; private get; }
         public Vector2 Target { set; private get; }
-        public float SplashRange { set; private get; }
-        public int Damage { set; private get; }
+        public TowerInfo Info { set; private get; }
 
         private void Start()
         {
@@ -24,18 +24,18 @@ namespace LudumDare51.Tower
         {
             if (collision.collider.CompareTag("Enemy"))
             {
-                if (SplashRange == -1)
+                if (Info.SplashDamageRange == -1)
                 {
-                    collision.collider.GetComponent<EnemyAI>().TakeDamage(Damage);
+                    collision.collider.GetComponent<EnemyAI>().TakeDamage(Info);
                 }
                 else
                 {
-                    var collisions = Physics2D.OverlapCircleAll(collision.contacts[0].point, SplashRange);
+                    var collisions = Physics2D.OverlapCircleAll(collision.contacts[0].point, Info.SplashDamageRange);
                     foreach (var coll in collisions)
                     {
                         if (coll.CompareTag("Enemy"))
                         {
-                            coll.GetComponent<EnemyAI>().TakeDamage(Damage);
+                            coll.GetComponent<EnemyAI>().TakeDamage(Info);
                         }
                     }
                 }

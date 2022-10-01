@@ -10,6 +10,8 @@ namespace LudumDare51.Enemy
         public EnemyInfo Info { set; private get; }
 
         public Vector3 Offset { set; private get; }
+        public float _slowForce;
+        public float _slowDuration;
 
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
@@ -32,13 +34,25 @@ namespace LudumDare51.Enemy
             _sr.sprite = Info.SpriteAlive;
         }
 
+        private void Update()
+        {
+            if (_slowDuration > 0f)
+            {
+                _slowDuration -= Time.deltaTime;
+                if (_slowDuration <= 0f)
+                {
+                    _sr.color = Color.white;
+                }
+            }
+        }
+
         private void FixedUpdate()
         {
             var targetPos = NextNode.transform.position + (_isBeingEaten ? Vector3.zero : Offset);
             targetPos.x -= transform.position.x;
             targetPos.y -= transform.position.y;
             var angle = Mathf.Atan2(targetPos.y, targetPos.x);
-            _rb.velocity = Info.Speed * Time.fixedDeltaTime * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
+            _rb.velocity = Info.Speed * Time.fixedDeltaTime * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized * (_slowDuration > 0f ? _slowForce : 1f);
             if (targetPos.magnitude <= .2f)
             {
                 if (NextNode.NextNode != null)
@@ -65,9 +79,15 @@ namespace LudumDare51.Enemy
             }
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(TowerInfo info)
         {
-            _health -= damage;
+            _health -= info.Damage;
+            if (info.SpeedModifierDuration > 0f)
+            {
+                _sr.color = Color.yellow;
+                if (info.SpeedModifierDuration > _slowDuration) _slowDuration = info.SpeedModifierDuration;
+                if (info.SpeedModifierForce > _slowForce) _slowForce = info.SpeedModifierForce;
+            }
             if (_health <= 0)
             {
                 IsAlive = false;

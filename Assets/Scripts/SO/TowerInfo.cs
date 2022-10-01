@@ -13,5 +13,7 @@ namespace LudumDare51.SO
         public DamageInfo[] DamageModifiers;
         public Sprite Sprite;
         public int Damage;
+        public float SpeedModifierForce;
+        public float SpeedModifierDuration;
     }
 }
