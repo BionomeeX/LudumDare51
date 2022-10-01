@@ -25,7 +25,6 @@ namespace LudumDare51
         {
             if (_canShoot)
             {
-                _canShoot = false;
                 _enemiesInRange.RemoveAll(x => x.gameObject == null);
                 if (_enemiesInRange.Count > 0)
                 {
@@ -34,6 +33,7 @@ namespace LudumDare51
                     bullet.Target = _enemiesInRange[0].transform.position;
                     Destroy(bullet.gameObject, 5f);
                     StartCoroutine(Reload());
+                    _canShoot = false;
                 }
             }
         }

@@ -22,7 +22,8 @@ namespace LudumDare51.Enemy
             for (int i = 0; i < 10f; i++)
             {
                 var targetInfo = _enemyInfo[Random.Range(0, _enemyInfo.Length)];
-                var go = Instantiate(_enemyPrefab, (Vector2)_spawnPoint.position + Random.insideUnitCircle * 1f, Quaternion.identity);
+                var go = Instantiate(_enemyPrefab, transform);
+                go.transform.position = (Vector2)(_spawnPoint.position + Random.insideUnitSphere * 1f);
                 var enemy = go.GetComponent<EnemyAI>();
                 enemy.Info = targetInfo;
                 enemy.NextNode = _firstNode;
