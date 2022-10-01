@@ -24,8 +24,21 @@ namespace LudumDare51
             if (_canShoot)
             {
                 _canShoot = false;
-                var bullet = Instantiate(_info.Bullet, transform.position, Quaternion.identity);
-                StartCoroutine(Reload());
+                while (_enemiesInRange.Count > 0)
+                {
+                    if (_enemiesInRange[0].gameObject == null)
+                    {
+                        _enemiesInRange.RemoveAt(0);
+                    }
+                }
+                if (_enemiesInRange.Count > 0)
+                {
+                    var bullet = Instantiate(_info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
+                    bullet.Speed = 50;
+                    bullet.Target = _enemiesInRange[0].transform.position;
+                    Destroy(bullet.gameObject, 5f);
+                    StartCoroutine(Reload());
+                }
             }
         }
 
