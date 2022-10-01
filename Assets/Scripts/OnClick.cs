@@ -29,7 +29,7 @@ namespace LudumDare51
         private void Awake()
         {
             _cam = Camera.main;
-            _gridsize = Mathf.CeilToInt(_tower.transform.localScale.x * 50f);
+            _gridsize = Mathf.CeilToInt(_tower.GetComponent<CircleCollider2D>().radius * 100f * _tower.transform.localScale.x);
         }
 
         private bool TowerExistOnPos(GameObject tower, Vector3 posOnTheWorld){
@@ -111,10 +111,10 @@ namespace LudumDare51
             {
                 var x = 1 + Mathf.FloorToInt((_cam.pixelWidth - 1) / _gridsize);
                 var y = 1 + Mathf.FloorToInt((_cam.pixelHeight - 1) / _gridsize);
+                Gizmos.color = new Color(1f, 1f, 1f, .5f);
 
                 for (var i = 0; i < x; ++i)
                 {
-                    Gizmos.color = Color.white;
 
                     var start = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, 0, _cam.nearClipPlane));
                     var stop = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, _cam.pixelHeight, _cam.nearClipPlane));
@@ -123,7 +123,6 @@ namespace LudumDare51
                 }
                 for (var i = 0; i < y; ++i)
                 {
-                    Gizmos.color = Color.white;
 
                     var start = _cam.ScreenToWorldPoint(new Vector3(0, i * _gridsize, _cam.nearClipPlane));
                     var stop = _cam.ScreenToWorldPoint(new Vector3(_cam.pixelWidth, i * _gridsize, _cam.nearClipPlane));

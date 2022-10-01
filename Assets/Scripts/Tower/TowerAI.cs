@@ -17,7 +17,7 @@ namespace LudumDare51.Tower
         private void Start()
         {
             GetComponent<CircleCollider2D>().radius = Info.Range;
-            GetComponent<SpriteRenderer>().color = Info.Color;
+            GetComponent<SpriteRenderer>().sprite = Info.Sprite;
         }
 
         private void Update()

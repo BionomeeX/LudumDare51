@@ -10,6 +10,6 @@ namespace LudumDare51.SO
         public int ReloadTime;
         public GameObject Bullet;
         public DamageInfo[] DamageModifiers;
-        public Color Color;
+        public Sprite Sprite;
     }
 }
