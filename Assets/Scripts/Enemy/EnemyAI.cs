@@ -32,7 +32,7 @@ namespace LudumDare51.Enemy
             var targetPos = NextNode.transform.position;
             targetPos.x -= transform.position.x;
             targetPos.y -= transform.position.y;
-            var angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
+            var angle = Mathf.Atan2(targetPos.y, targetPos.x);
             _rb.velocity = Info.Speed * Time.fixedDeltaTime * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
             if (Vector2.Distance(transform.position, NextNode.transform.position) <= .1f)
             {
