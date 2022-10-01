@@ -37,7 +37,7 @@ namespace LudumDare51.Enemy
             targetPos.y -= transform.position.y;
             var angle = Mathf.Atan2(targetPos.y, targetPos.x);
             _rb.velocity = Info.Speed * Time.fixedDeltaTime * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
-            if (Vector2.Distance(transform.position, targetPos) <= .2f)
+            if (targetPos.magnitude <= .2f)
             {
                 if (NextNode.NextNode != null)
                 {
