@@ -1,4 +1,5 @@
 ﻿using LudumDare51.SO;
+using System.Collections;
 using UnityEngine;
 
 namespace LudumDare51.Enemy
@@ -19,6 +20,11 @@ namespace LudumDare51.Enemy
 
         private void Start()
         {
+            StartCoroutine(Spawn());
+        }
+
+        private IEnumerator Spawn()
+        {
             for (int i = 0; i < 10f; i++)
             {
                 var targetInfo = _enemyInfo[Random.Range(0, _enemyInfo.Length)];
@@ -29,6 +35,7 @@ namespace LudumDare51.Enemy
                 enemy.Info = targetInfo;
                 enemy.NextNode = _firstNode;
                 enemy.Offset = offset;
+                yield return new WaitForSeconds(Random.Range(.1f, .3f));
             }
         }
     }
