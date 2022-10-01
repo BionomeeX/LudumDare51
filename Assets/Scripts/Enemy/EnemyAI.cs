@@ -10,18 +10,21 @@ namespace LudumDare51.Enemy
         public EnemyInfo Info { set; private get; }
 
         private Rigidbody2D _rb;
+        private SpriteRenderer _sr;
 
         private int _health;
+        public bool IsAlive { private set; get; } = true;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _sr = GetComponent<SpriteRenderer>();
         }
 
         private void Start()
         {
             _health = Info.BaseHealth;
-            GetComponent<SpriteRenderer>().color = Info.Color;
+            _sr.sprite = Info.SpriteAlive;
         }
 
         private void FixedUpdate()
@@ -31,7 +34,7 @@ namespace LudumDare51.Enemy
             targetPos.y -= transform.position.y;
             var angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
             _rb.velocity = Info.Speed * Time.fixedDeltaTime * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            if (Vector2.Distance(transform.position, NextNode.transform.position) < .25f)
+            if (Vector2.Distance(transform.position, NextNode.transform.position) < .3f)
             {
                 NextNode = NextNode.NextNode;
             }
@@ -42,7 +45,8 @@ namespace LudumDare51.Enemy
             _health -= damage;
             if (_health <= 0)
             {
-                Destroy(gameObject);
+                IsAlive = false;
+                _sr.sprite = Info.SpriteDead;
             }
         }
     }

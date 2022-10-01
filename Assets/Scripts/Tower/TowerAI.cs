@@ -24,7 +24,7 @@ namespace LudumDare51.Tower
         {
             if (_canShoot)
             {
-                _enemiesInRange.RemoveAll(x => x.gameObject == null);
+                _enemiesInRange.RemoveAll(x => x.gameObject == null || !x.IsAlive);
                 if (_enemiesInRange.Count > 0)
                 {
                     var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
@@ -47,7 +47,11 @@ namespace LudumDare51.Tower
         {
             if (collision.CompareTag("Enemy"))
             {
-                _enemiesInRange.Add(collision.GetComponent<EnemyAI>());
+                var enemy = collision.GetComponent<EnemyAI>();
+                if (enemy.IsAlive)
+                {
+                    _enemiesInRange.Add(enemy);
+                }
             }
         }
 
