@@ -15,7 +15,7 @@ namespace LudumDare51
         private GameObject _tower;
 
         [SerializeField]
-        private GameObject _radialMenu;
+        private RadialMenu _radialMenu;
 
         private readonly List<GameObject> _towers = new();
 
@@ -52,15 +52,9 @@ namespace LudumDare51
 
         private void ClickOnATower(GameObject tower, Vector3 posOnTheWorld) {
             Active = false;
-            var radialMenu = Instantiate(
-                _radialMenu,
-                posOnTheWorld, Quaternion.identity
-            );
-            var radmenu = radialMenu.GetComponent<RadialMenu>();
-            radmenu.tower = tower;
-            radmenu.myPosOnTheWorld = posOnTheWorld;
-            radmenu.parent = this;
-            radmenu.cam = _cam;
+            _radialMenu.Tower = tower;
+            _radialMenu.MyPosOnTheWorld = posOnTheWorld;
+            _radialMenu.gameObject.SetActive(true);
             //_towers[indexTowerHere].GetComponent<Tower>().ModifyType();
         }
 
