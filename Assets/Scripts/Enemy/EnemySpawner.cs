@@ -23,10 +23,12 @@ namespace LudumDare51.Enemy
             {
                 var targetInfo = _enemyInfo[Random.Range(0, _enemyInfo.Length)];
                 var go = Instantiate(_enemyPrefab, transform);
-                go.transform.position = (Vector2)(_spawnPoint.position + Random.insideUnitSphere * 1f);
+                var offset = (Vector2)(Random.insideUnitSphere * .25f);
+                go.transform.position = (Vector2)(_spawnPoint.position) + offset;
                 var enemy = go.GetComponent<EnemyAI>();
                 enemy.Info = targetInfo;
                 enemy.NextNode = _firstNode;
+                enemy.Offset = offset;
             }
         }
     }

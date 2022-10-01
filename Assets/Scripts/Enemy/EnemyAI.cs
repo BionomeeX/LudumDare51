@@ -9,6 +9,8 @@ namespace LudumDare51.Enemy
 
         public EnemyInfo Info { set; private get; }
 
+        public Vector3 Offset { set; private get; }
+
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
 
@@ -29,12 +31,12 @@ namespace LudumDare51.Enemy
 
         private void FixedUpdate()
         {
-            var targetPos = NextNode.transform.position;
+            var targetPos = NextNode.transform.position + Offset;
             targetPos.x -= transform.position.x;
             targetPos.y -= transform.position.y;
             var angle = Mathf.Atan2(targetPos.y, targetPos.x);
             _rb.velocity = Info.Speed * Time.fixedDeltaTime * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
-            if (Vector2.Distance(transform.position, NextNode.transform.position) <= .1f)
+            if (Vector2.Distance(transform.position, NextNode.transform.position + Offset) <= .1f)
             {
                 NextNode = NextNode.NextNode;
             }
