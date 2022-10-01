@@ -9,5 +9,6 @@ namespace LudumDare51.SO
         public float Speed;
         public int BaseHealth;
         public EnemyType Type;
+        public Color Color;
     }
 }

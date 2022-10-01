@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LudumDare51.Tower;
+using UnityEngine;
 
 namespace LudumDare51.SO
 {
@@ -8,5 +9,7 @@ namespace LudumDare51.SO
         public int Range;
         public int ReloadTime;
         public GameObject Bullet;
+        public DamageInfo[] DamageModifiers;
+        public Color Color;
     }
 }
