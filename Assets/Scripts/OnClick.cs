@@ -9,7 +9,7 @@ namespace LudumDare51
     {
 
         [SerializeField]
-        private Camera cam;
+        private Camera _cam;
 
         [SerializeField]
         private int _gridsize = 32;
@@ -25,15 +25,19 @@ namespace LudumDare51
 
         }
 
-        private bool TowerExistOnPos(GameObject tower, Vector2 pos){
-            if (Mathf.FloorToInt(tower.transform.position[0] / _gridsize) == Mathf.FloorToInt(pos[0]) &&
-                Mathf.FloorToInt(tower.transform.position[1] / _gridsize) == Mathf.FloorToInt(pos[1])) {
+        private bool TowerExistOnPos(GameObject tower, Vector3 pos){
+
+            // Floor and Cast to int to be sure not to fiddle with strange floating point comparison behavior
+            if (
+                Mathf.FloorToInt(tower.transform.position[0]) == Mathf.FloorToInt(pos[0]) &&
+                Mathf.FloorToInt(tower.transform.position[1]) == Mathf.FloorToInt(pos[1])
+            ) {
                 return true;
             }
             return false;
         }
 
-        private bool TowerExisteHere(Vector2 pos) {
+        private bool TowerExisteHere(Vector3 pos) {
             foreach(var tower in _towers) {
                 if(TowerExistOnPos(tower, pos)) {
                     return true;
@@ -49,24 +53,27 @@ namespace LudumDare51
                 pos[0] = Mathf.Floor(pos[0]);
                 pos[1] = Mathf.Floor(pos[1]);
 
+                // Compute world position of the center of the case where the mouse clicked
+                var posOnTheWorld = _cam.ScreenToWorldPoint(
+                    new Vector3(
+                        pos[0] * _gridsize + _gridsize / 2,
+                        pos[1] * _gridsize + _gridsize / 2,
+                        _cam.nearClipPlane
+                    )
+                );
+
                 // check if there is already a turret
-                if(!TowerExisteHere(pos)){
+                if(!TowerExisteHere(posOnTheWorld)){
                     var position = Mouse.current.position.ReadValue();
 
                     var newtower = Instantiate(
                         _tower,
-                        cam.ScreenToWorldPoint(
-                            new Vector3(
-                                _gridsize * pos[0] + _gridsize / 2,
-                                _gridsize * pos[1] + _gridsize / 2,
-                                cam.nearClipPlane
-                            )
-                        ),
+                        posOnTheWorld,
                         Quaternion.identity
                     );
+
                     _towers.Add(newtower);
                 }
-
             }
         }
 
@@ -75,22 +82,22 @@ namespace LudumDare51
             //Debug.Log(Screen.width);
             //Debug.Log(Screen.height);
 
-            var x = Mathf.FloorToInt(cam.pixelWidth / _gridsize);
-            var y = Mathf.FloorToInt(cam.pixelHeight / _gridsize);
+            var x = 1 + Mathf.FloorToInt((_cam.pixelWidth - 1) / _gridsize);
+            var y = 1 + Mathf.FloorToInt((_cam.pixelHeight - 1) / _gridsize);
 
             for(var i = 0 ; i < x; ++i){
                 Gizmos.color = Color.white;
 
-                var start = cam.ScreenToWorldPoint(new Vector3(i * _gridsize, 0, cam.nearClipPlane));
-                var stop = cam.ScreenToWorldPoint(new Vector3(i * _gridsize, cam.pixelHeight, cam.nearClipPlane));
+                var start = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, 0, _cam.nearClipPlane));
+                var stop = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, _cam.pixelHeight, _cam.nearClipPlane));
 
                 Gizmos.DrawLine(start, stop);
             }
             for(var i = 0 ; i < y; ++i){
                 Gizmos.color = Color.white;
 
-                var start = cam.ScreenToWorldPoint(new Vector3(0, i * _gridsize, cam.nearClipPlane));
-                var stop = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, i * _gridsize, cam.nearClipPlane));
+                var start = _cam.ScreenToWorldPoint(new Vector3(0, i * _gridsize, _cam.nearClipPlane));
+                var stop = _cam.ScreenToWorldPoint(new Vector3(_cam.pixelWidth, i * _gridsize, _cam.nearClipPlane));
 
                 Gizmos.DrawLine(start, stop);
             }
