@@ -16,7 +16,7 @@ namespace LudumDare51.Enemy
 
         private int _health;
         public bool IsAlive { private set; get; } = true;
-        public bool _isBeingEaten = false;
+        private bool _isBeingEaten = false;
 
         private void Awake()
         {
