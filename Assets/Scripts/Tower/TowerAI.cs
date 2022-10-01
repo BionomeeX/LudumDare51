@@ -1,3 +1,4 @@
+using LudumDare51.Enemy;
 using LudumDare51.SO;
 using System.Collections;
 using System.Collections.Generic;

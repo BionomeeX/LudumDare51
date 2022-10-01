@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LudumDare51.Enemy;
+using UnityEngine;
 
 namespace LudumDare51.SO
 {
