@@ -29,7 +29,7 @@ namespace LudumDare51.Tower
                 if (_enemiesInRange.Any())
                 {
                     var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
-                    bullet.Speed = 50;
+                    bullet.Speed = 10;
                     bullet.Target = _enemiesInRange[0].transform.position;
                     Destroy(bullet.gameObject, 5f);
                     StartCoroutine(Reload());

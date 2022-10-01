@@ -23,6 +23,11 @@ namespace LudumDare51.Enemy
             _sr = GetComponent<SpriteRenderer>();
         }
 
+        private void Start()
+        {
+            EaterManager.Instance.Register(this);
+        }
+
         public void AddEat()
         {
             EaterManager.Instance.AddEat(this);

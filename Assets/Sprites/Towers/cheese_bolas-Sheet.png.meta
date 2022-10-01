@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2fc4280f37466e04584f8cbcf9c2281b
+guid: a3e7fc396a28eaa41b66429d769c0018
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -68,7 +68,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -118,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bullet_0
+      name: cheese_bolas-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34cf52dff5b3e4240a1853ccf2eb7dbe
-      internalID: -919991625
+      spriteID: 0ab1a828bcbee3842a1b9615f2ff90bb
+      internalID: -1368650298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bullet_1
+      name: cheese_bolas-Sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -153,29 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb6215a87a40ec54f983b1cd4e29fe3f
-      internalID: -129718725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bullet_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d50608c16c08d4946aa98addbee9d0ae
-      internalID: 1933109690
+      spriteID: 905f25784356de8458d74422f1c34e3b
+      internalID: -354583241
       vertices: []
       indices: 
       edges: []
@@ -191,9 +170,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bullet_2: 1933109690
-      bullet_0: -919991625
-      bullet_1: -129718725
+      cheese_bolas-Sheet_0: -1368650298
+      cheese_bolas-Sheet_1: -354583241
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2fc4280f37466e04584f8cbcf9c2281b
+guid: 0b6434af13963b649954d278d5eb7b50
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -68,7 +68,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -118,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bullet_0
+      name: onion_watergun-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34cf52dff5b3e4240a1853ccf2eb7dbe
-      internalID: -919991625
+      spriteID: 45afbac6ca6949d41a6deb31628f9142
+      internalID: 1870124531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bullet_1
+      name: onion_watergun-Sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -153,29 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb6215a87a40ec54f983b1cd4e29fe3f
-      internalID: -129718725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bullet_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d50608c16c08d4946aa98addbee9d0ae
-      internalID: 1933109690
+      spriteID: 32349703accdb3c41a4cdf94cf91676c
+      internalID: 947718804
       vertices: []
       indices: 
       edges: []
@@ -191,9 +170,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bullet_2: 1933109690
-      bullet_0: -919991625
-      bullet_1: -129718725
+      onion_watergun-Sheet_1: 947718804
+      onion_watergun-Sheet_0: 1870124531
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
