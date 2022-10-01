@@ -20,7 +20,7 @@ namespace LudumDare51.Enemy
 
         private void Start()
         {
-            StartCoroutine(Spawn());
+            StartCoroutine(NextWave());
         }
 
         private IEnumerator Spawn()
@@ -36,6 +36,15 @@ namespace LudumDare51.Enemy
                 enemy.NextNode = _firstNode;
                 enemy.Offset = offset;
                 yield return new WaitForSeconds(Random.Range(.1f, .3f));
+            }
+        }
+
+        private IEnumerator NextWave()
+        {
+            while (true)
+            {
+                yield return Spawn();
+                yield return new WaitForSeconds(10f);
             }
         }
     }
