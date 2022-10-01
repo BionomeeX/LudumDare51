@@ -25,26 +25,38 @@ namespace LudumDare51
 
         }
 
-        private bool TowerExistOnPos(GameObject tower, Vector3 pos){
+        private bool TowerExistOnPos(GameObject tower, Vector3 posOnTheWorld){
 
             // Floor and Cast to int to be sure not to fiddle with strange floating point comparison behavior
             if (
-                Mathf.FloorToInt(tower.transform.position[0]) == Mathf.FloorToInt(pos[0]) &&
-                Mathf.FloorToInt(tower.transform.position[1]) == Mathf.FloorToInt(pos[1])
+                Mathf.FloorToInt(tower.transform.position[0]) == Mathf.FloorToInt(posOnTheWorld[0]) &&
+                Mathf.FloorToInt(tower.transform.position[1]) == Mathf.FloorToInt(posOnTheWorld[1])
             ) {
                 return true;
             }
             return false;
         }
 
-        private bool TowerExisteHere(Vector3 pos) {
-            foreach(var tower in _towers) {
-                if(TowerExistOnPos(tower, pos)) {
-                    return true;
+        private int WhichTowerExistsHere(Vector3 posOnTheWorld) {
+            for(int i = 0; i < _towers.Count; ++i)
+            {
+                if(TowerExistOnPos(_towers[i], posOnTheWorld)) {
+                    return i;
                 }
             }
-            return false;
+            return -1;
         }
+
+        private void ClickOnEmptyCase(Vector3 posOnTheWorld){
+            var newtower = Instantiate(
+                _tower,
+                posOnTheWorld,
+                Quaternion.identity
+            );
+
+            _towers.Add(newtower);
+        }
+
 
         public void Click(InputAction.CallbackContext value) {
             if(value.performed){
@@ -62,17 +74,14 @@ namespace LudumDare51
                     )
                 );
 
+                var indexTowerHere = WhichTowerExistsHere(posOnTheWorld);
                 // check if there is already a turret
-                if(!TowerExisteHere(posOnTheWorld)){
-                    var position = Mouse.current.position.ReadValue();
-
-                    var newtower = Instantiate(
-                        _tower,
-                        posOnTheWorld,
-                        Quaternion.identity
-                    );
-
-                    _towers.Add(newtower);
+                if(indexTowerHere > -1){
+                    _towers[indexTowerHere].GetComponent<Tower>().ModifyType();
+                }
+                // Tower existing, modify tower type
+                else {
+                    ClickOnEmptyCase(posOnTheWorld);
                 }
             }
         }

@@ -57,5 +57,9 @@ namespace LudumDare51
                 _enemiesInRange.Remove(collision.GetComponent<Enemy>());
             }
         }
+
+        public void ModifyType(){
+            Debug.Log("Type modified");
+        }
     }
 }
