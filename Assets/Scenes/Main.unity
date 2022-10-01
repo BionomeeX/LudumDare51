@@ -648,20 +648,12 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6599858667969682816, guid: fba7facbf12348040b68005990d0d0b5, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6599858667969682822, guid: fba7facbf12348040b68005990d0d0b5, type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6599858667969682822, guid: fba7facbf12348040b68005990d0d0b5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6599858667969682822, guid: fba7facbf12348040b68005990d0d0b5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6599858667969682822, guid: fba7facbf12348040b68005990d0d0b5, type: 3}
       propertyPath: m_LocalPosition.x
