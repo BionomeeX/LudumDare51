@@ -9,30 +9,34 @@ namespace LudumDare51.Enemy
 
         public EnemyInfo Info { set; private get; }
 
+        public Vector3 Offset { set; private get; }
+
         private Rigidbody2D _rb;
+        private SpriteRenderer _sr;
 
         private int _health;
+        public bool IsAlive { private set; get; } = true;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _sr = GetComponent<SpriteRenderer>();
         }
 
         private void Start()
         {
             _health = Info.BaseHealth;
-            GetComponent<SpriteRenderer>().color = Info.Color;
+            _sr.sprite = Info.SpriteAlive;
         }
 
         private void FixedUpdate()
         {
-            var targetPos = NextNode.transform.position;
+            var targetPos = NextNode.transform.position + Offset;
             targetPos.x -= transform.position.x;
             targetPos.y -= transform.position.y;
-            var angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            _rb.velocity = Info.Speed * Time.fixedDeltaTime * transform.right;
-            if (Vector2.Distance(transform.position, NextNode.transform.position) < .1f)
+            var angle = Mathf.Atan2(targetPos.y, targetPos.x);
+            _rb.velocity = Info.Speed * Time.fixedDeltaTime * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
+            if (Vector2.Distance(transform.position, NextNode.transform.position + Offset) <= .1f)
             {
                 NextNode = NextNode.NextNode;
             }
@@ -43,7 +47,9 @@ namespace LudumDare51.Enemy
             _health -= damage;
             if (_health <= 0)
             {
-                Destroy(gameObject);
+                IsAlive = false;
+                _sr.sprite = Info.SpriteDead;
+                gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
             }
         }
     }

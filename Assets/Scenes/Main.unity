@@ -252,7 +252,6 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 6599858667969682816, guid: fba7facbf12348040b68005990d0d0b5, type: 3}
   _enemyInfo:
   - {fileID: 11400000, guid: 2834ed77a17599f499ef75af94e5e0f0, type: 2}
-  - {fileID: 11400000, guid: 7104e7a97d2f0734fb06cda8e5330897, type: 2}
   _spawnPoint: {fileID: 805787088}
   _firstNode: {fileID: 6168659041927750543}
 --- !u!4 &310640305 stripped

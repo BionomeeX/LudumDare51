@@ -2,6 +2,7 @@ using LudumDare51.Enemy;
 using LudumDare51.SO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LudumDare51.Tower
@@ -24,8 +25,8 @@ namespace LudumDare51.Tower
         {
             if (_canShoot)
             {
-                _enemiesInRange.RemoveAll(x => x.gameObject == null);
-                if (_enemiesInRange.Count > 0)
+                _enemiesInRange.RemoveAll(x => !x.IsAlive);
+                if (_enemiesInRange.Any())
                 {
                     var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
                     bullet.Speed = 50;
@@ -47,7 +48,11 @@ namespace LudumDare51.Tower
         {
             if (collision.CompareTag("Enemy"))
             {
-                _enemiesInRange.Add(collision.GetComponent<EnemyAI>());
+                var enemy = collision.GetComponent<EnemyAI>();
+                if (enemy.IsAlive)
+                {
+                    _enemiesInRange.Add(enemy);
+                }
             }
         }
 
