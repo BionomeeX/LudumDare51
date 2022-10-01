@@ -91,7 +91,7 @@ namespace LudumDare51
                 Debug.Log($"Button {indexButton} clicked !");
             }
             // in any cases
-            parent.active = true;
+            parent.Active = true;
             foreach(var button in _buttons){
                 Destroy(button);
             }

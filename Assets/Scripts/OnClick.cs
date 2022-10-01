@@ -1,5 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,12 +8,8 @@ namespace LudumDare51
 {
     public class OnClick : MonoBehaviour
     {
-
-        [SerializeField]
         private Camera _cam;
-
-        [SerializeField]
-        private int _gridsize = 32;
+        private int _gridsize;
 
         [SerializeField]
         private GameObject _tower;
@@ -20,36 +17,27 @@ namespace LudumDare51
         [SerializeField]
         private GameObject _radialMenu;
 
-        private List<GameObject> _towers = new();
+        private readonly List<GameObject> _towers = new();
 
-        public bool active = true;
+        public bool Active { set; private get; } = true;
 
-        // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
-
+            _cam = Camera.main;
+            _gridsize = Mathf.CeilToInt(_tower.transform.localScale.x * 50f);
         }
 
         private bool TowerExistOnPos(GameObject tower, Vector3 posOnTheWorld){
 
             // Floor and Cast to int to be sure not to fiddle with strange floating point comparison behavior
-            if (
+            return
                 Mathf.FloorToInt(tower.transform.position[0]) == Mathf.FloorToInt(posOnTheWorld[0]) &&
                 Mathf.FloorToInt(tower.transform.position[1]) == Mathf.FloorToInt(posOnTheWorld[1])
-            ) {
-                return true;
-            }
-            return false;
+            ;
         }
 
-        private int WhichTowerExistsHere(Vector3 posOnTheWorld) {
-            for(int i = 0; i < _towers.Count; ++i)
-            {
-                if(TowerExistOnPos(_towers[i], posOnTheWorld)) {
-                    return i;
-                }
-            }
-            return -1;
+        private GameObject WhichTowerExistsHere(Vector3 posOnTheWorld) {
+            return _towers.FirstOrDefault(x => TowerExistOnPos(x, posOnTheWorld));
         }
 
         private void ClickOnEmptyCase(Vector3 posOnTheWorld) {
@@ -62,14 +50,14 @@ namespace LudumDare51
             _towers.Add(newtower);
         }
 
-        private void ClickOnATower(int indexTowerHere, Vector3 posOnTheWorld) {
-            active = false;
+        private void ClickOnATower(GameObject tower, Vector3 posOnTheWorld) {
+            Active = false;
             var radialMenu = Instantiate(
                 _radialMenu,
                 posOnTheWorld, Quaternion.identity
             );
             var radmenu = radialMenu.GetComponent<RadialMenu>();
-            radmenu.tower = _towers[indexTowerHere];
+            radmenu.tower = tower;
             radmenu.myPosOnTheWorld = posOnTheWorld;
             radmenu.parent = this;
             radmenu.cam = _cam;
@@ -78,7 +66,7 @@ namespace LudumDare51
 
         public void Click(InputAction.CallbackContext value)
         {
-            if (active && value.performed)
+            if (Active && value.performed)
             {
                 var pos = Mouse.current.position.ReadValue();
                 pos /= _gridsize;
@@ -94,11 +82,11 @@ namespace LudumDare51
                     )
                 );
 
-                var indexTowerHere = WhichTowerExistsHere(posOnTheWorld);
+                var towerHere = WhichTowerExistsHere(posOnTheWorld);
                 // check if there is already a turret
-                if (indexTowerHere > -1)
+                if (towerHere != null)
                 {
-                    ClickOnATower(indexTowerHere, posOnTheWorld);
+                    ClickOnATower(towerHere, posOnTheWorld);
                 }
                 // Tower existing, modify tower type
                 else
@@ -110,27 +98,29 @@ namespace LudumDare51
 
         private void OnDrawGizmos()
         {
-            //Debug.Log(Screen.width);
-            //Debug.Log(Screen.height);
+            if (EditorApplication.isPlaying)
+            {
+                var x = 1 + Mathf.FloorToInt((_cam.pixelWidth - 1) / _gridsize);
+                var y = 1 + Mathf.FloorToInt((_cam.pixelHeight - 1) / _gridsize);
 
-            var x = 1 + Mathf.FloorToInt((_cam.pixelWidth - 1) / _gridsize);
-            var y = 1 + Mathf.FloorToInt((_cam.pixelHeight - 1) / _gridsize);
+                for (var i = 0; i < x; ++i)
+                {
+                    Gizmos.color = Color.white;
 
-            for(var i = 0 ; i < x; ++i){
-                Gizmos.color = Color.white;
+                    var start = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, 0, _cam.nearClipPlane));
+                    var stop = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, _cam.pixelHeight, _cam.nearClipPlane));
 
-                var start = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, 0, _cam.nearClipPlane));
-                var stop = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, _cam.pixelHeight, _cam.nearClipPlane));
+                    Gizmos.DrawLine(start, stop);
+                }
+                for (var i = 0; i < y; ++i)
+                {
+                    Gizmos.color = Color.white;
 
-                Gizmos.DrawLine(start, stop);
-            }
-            for(var i = 0 ; i < y; ++i){
-                Gizmos.color = Color.white;
+                    var start = _cam.ScreenToWorldPoint(new Vector3(0, i * _gridsize, _cam.nearClipPlane));
+                    var stop = _cam.ScreenToWorldPoint(new Vector3(_cam.pixelWidth, i * _gridsize, _cam.nearClipPlane));
 
-                var start = _cam.ScreenToWorldPoint(new Vector3(0, i * _gridsize, _cam.nearClipPlane));
-                var stop = _cam.ScreenToWorldPoint(new Vector3(_cam.pixelWidth, i * _gridsize, _cam.nearClipPlane));
-
-                Gizmos.DrawLine(start, stop);
+                    Gizmos.DrawLine(start, stop);
+                }
             }
         }
     }
