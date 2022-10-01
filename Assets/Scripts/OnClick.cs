@@ -17,7 +17,12 @@ namespace LudumDare51
         [SerializeField]
         private GameObject _tower;
 
+        [SerializeField]
+        private GameObject _radialMenu;
+
         private List<GameObject> _towers = new();
+
+        public bool active = true;
 
         // Start is called before the first frame update
         void Start()
@@ -47,7 +52,7 @@ namespace LudumDare51
             return -1;
         }
 
-        private void ClickOnEmptyCase(Vector3 posOnTheWorld){
+        private void ClickOnEmptyCase(Vector3 posOnTheWorld) {
             var newtower = Instantiate(
                 _tower,
                 posOnTheWorld,
@@ -57,31 +62,47 @@ namespace LudumDare51
             _towers.Add(newtower);
         }
 
+        private void ClickOnATower(int indexTowerHere, Vector3 posOnTheWorld) {
+            active = false;
+            var radialMenu = Instantiate(
+                _radialMenu,
+                posOnTheWorld, Quaternion.identity
+            );
+            var radmenu = radialMenu.GetComponent<RadialMenu>();
+            radmenu.tower = _towers[indexTowerHere];
+            radmenu.myPosOnTheWorld = posOnTheWorld;
+            radmenu.parent = this;
+            radmenu.cam = _cam;
+            //_towers[indexTowerHere].GetComponent<Tower>().ModifyType();
+        }
 
         public void Click(InputAction.CallbackContext value) {
-            if(value.performed){
-                var pos = Mouse.current.position.ReadValue();
-                pos /= _gridsize;
-                pos[0] = Mathf.Floor(pos[0]);
-                pos[1] = Mathf.Floor(pos[1]);
+            if(active)
+            {
+                if(value.performed){
+                    var pos = Mouse.current.position.ReadValue();
+                    pos /= _gridsize;
+                    pos[0] = Mathf.Floor(pos[0]);
+                    pos[1] = Mathf.Floor(pos[1]);
 
-                // Compute world position of the center of the case where the mouse clicked
-                var posOnTheWorld = _cam.ScreenToWorldPoint(
-                    new Vector3(
-                        pos[0] * _gridsize + _gridsize / 2,
-                        pos[1] * _gridsize + _gridsize / 2,
-                        _cam.nearClipPlane
-                    )
-                );
+                    // Compute world position of the center of the case where the mouse clicked
+                    var posOnTheWorld = _cam.ScreenToWorldPoint(
+                        new Vector3(
+                            pos[0] * _gridsize + _gridsize / 2,
+                            pos[1] * _gridsize + _gridsize / 2,
+                            _cam.nearClipPlane
+                        )
+                    );
 
-                var indexTowerHere = WhichTowerExistsHere(posOnTheWorld);
-                // check if there is already a turret
-                if(indexTowerHere > -1){
-                    _towers[indexTowerHere].GetComponent<Tower>().ModifyType();
-                }
-                // Tower existing, modify tower type
-                else {
-                    ClickOnEmptyCase(posOnTheWorld);
+                    var indexTowerHere = WhichTowerExistsHere(posOnTheWorld);
+                    // check if there is already a turret
+                    if(indexTowerHere > -1){
+                        ClickOnATower(indexTowerHere, posOnTheWorld);
+                    }
+                    // Tower existing, modify tower type
+                    else {
+                        ClickOnEmptyCase(posOnTheWorld);
+                    }
                 }
             }
         }
