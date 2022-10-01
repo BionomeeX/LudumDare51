@@ -7,6 +7,10 @@ namespace LudumDare51
 {
     public class OnClick : MonoBehaviour
     {
+
+        [SerializeField]
+        private Camera cam;
+
         [SerializeField]
         private int _gridsize = 32;
 
@@ -47,7 +51,9 @@ namespace LudumDare51
 
                 // check if there is already a turret
                 if(!TowerExisteHere(pos)){
-                    var newtower = Instantiate(_tower, Mouse.current.position.ReadValue(), Quaternion.identity);
+                    var position = Mouse.current.position.ReadValue();
+
+                    var newtower = Instantiate(_tower, cam.ScreenToWorldPoint(new Vector3(position[0], position[1], cam.nearClipPlane)), Quaternion.identity);
                     _towers.Add(newtower);
                 }
 
@@ -59,15 +65,24 @@ namespace LudumDare51
             //Debug.Log(Screen.width);
             //Debug.Log(Screen.height);
 
-            var x = Mathf.FloorToInt(Screen.width / _gridsize);
-            var y = Mathf.FloorToInt(Screen.height / _gridsize);
+            var x = Mathf.FloorToInt(cam.pixelWidth / _gridsize);
+            var y = Mathf.FloorToInt(cam.pixelHeight / _gridsize);
+
             for(var i = 0 ; i < x; ++i){
                 Gizmos.color = Color.white;
-                Gizmos.DrawLine(new Vector2(i * _gridsize, 0), new Vector2(i * _gridsize, Screen.height));
+
+                var start = cam.ScreenToWorldPoint(new Vector3(i * _gridsize, 0, cam.nearClipPlane));
+                var stop = cam.ScreenToWorldPoint(new Vector3(i * _gridsize, cam.pixelHeight, cam.nearClipPlane));
+
+                Gizmos.DrawLine(start, stop);
             }
             for(var i = 0 ; i < y; ++i){
                 Gizmos.color = Color.white;
-                Gizmos.DrawLine(new Vector2(0, i * _gridsize), new Vector2(Screen.width, i * _gridsize));
+
+                var start = cam.ScreenToWorldPoint(new Vector3(0, i * _gridsize, cam.nearClipPlane));
+                var stop = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, i * _gridsize, cam.nearClipPlane));
+
+                Gizmos.DrawLine(start, stop);
             }
         }
 
