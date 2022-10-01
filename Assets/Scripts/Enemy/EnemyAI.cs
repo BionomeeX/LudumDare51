@@ -47,6 +47,7 @@ namespace LudumDare51.Enemy
             {
                 IsAlive = false;
                 _sr.sprite = Info.SpriteDead;
+                gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
             }
         }
     }
