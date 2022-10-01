@@ -21,7 +21,7 @@ namespace LudumDare51
         {
             if (collision.collider.CompareTag("Enemy"))
             {
-                collision.collider.GetComponent<Enemy>().TakeDamage(1);
+                collision.collider.GetComponent<EnemyAI>().TakeDamage(1);
             }
             Destroy(gameObject);
         }

@@ -77,7 +77,7 @@ namespace LudumDare51
                 var indexTowerHere = WhichTowerExistsHere(posOnTheWorld);
                 // check if there is already a turret
                 if(indexTowerHere > -1){
-                    _towers[indexTowerHere].GetComponent<Tower>().ModifyType();
+                    _towers[indexTowerHere].GetComponent<TowerAI>().ModifyType();
                 }
                 // Tower existing, modify tower type
                 else {

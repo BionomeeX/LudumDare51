@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace LudumDare51
 {
-    public class Tower : MonoBehaviour
+    public class TowerAI : MonoBehaviour
     {
         [SerializeField]
         private TowerInfo _info;
 
-        private List<Enemy> _enemiesInRange = new();
+        private List<EnemyAI> _enemiesInRange = new();
 
         private bool _canShoot = true;
 
@@ -46,7 +46,7 @@ namespace LudumDare51
         {
             if (collision.CompareTag("Enemy"))
             {
-                _enemiesInRange.Add(collision.GetComponent<Enemy>());
+                _enemiesInRange.Add(collision.GetComponent<EnemyAI>());
             }
         }
 
@@ -54,7 +54,7 @@ namespace LudumDare51
         {
             if (collision.CompareTag("Enemy"))
             {
-                _enemiesInRange.Remove(collision.GetComponent<Enemy>());
+                _enemiesInRange.Remove(collision.GetComponent<EnemyAI>());
             }
         }
 
