@@ -30,9 +30,8 @@ namespace LudumDare51.Enemy
             targetPos.x -= transform.position.x;
             targetPos.y -= transform.position.y;
             var angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            _rb.velocity = Info.Speed * Time.fixedDeltaTime * transform.right;
-            if (Vector2.Distance(transform.position, NextNode.transform.position) < .1f)
+            _rb.velocity = Info.Speed * Time.fixedDeltaTime * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            if (Vector2.Distance(transform.position, NextNode.transform.position) < .25f)
             {
                 NextNode = NextNode.NextNode;
             }
