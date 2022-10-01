@@ -53,7 +53,17 @@ namespace LudumDare51
                 if(!TowerExisteHere(pos)){
                     var position = Mouse.current.position.ReadValue();
 
-                    var newtower = Instantiate(_tower, cam.ScreenToWorldPoint(new Vector3(position[0], position[1], cam.nearClipPlane)), Quaternion.identity);
+                    var newtower = Instantiate(
+                        _tower,
+                        cam.ScreenToWorldPoint(
+                            new Vector3(
+                                _gridsize * pos[0] + _gridsize / 2,
+                                _gridsize * pos[1] + _gridsize / 2,
+                                cam.nearClipPlane
+                            )
+                        ),
+                        Quaternion.identity
+                    );
                     _towers.Add(newtower);
                 }
 
