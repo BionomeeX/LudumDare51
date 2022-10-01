@@ -56,6 +56,8 @@ namespace LudumDare51.Enemy
             {
                 _isBeingEaten = true;
                 NextNode = collision.GetComponentInParent<Eater>().Goal;
+                _rb.constraints = RigidbodyConstraints2D.None;
+                _rb.AddTorque(100f * Random.Range(0, 2) == 0 ? -1f : 1f, ForceMode2D.Impulse);
             }
         }
 
