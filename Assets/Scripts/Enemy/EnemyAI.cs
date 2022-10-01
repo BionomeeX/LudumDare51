@@ -88,6 +88,11 @@ namespace LudumDare51.Enemy
                 if (info.SpeedModifierDuration > _slowDuration) _slowDuration = info.SpeedModifierDuration;
                 if (info.SpeedModifierForce > _slowForce) _slowForce = info.SpeedModifierForce;
             }
+            if (info.CleanAll)
+            {
+                _sr.color = Color.white;
+                _slowDuration = 0f;
+            }
             if (_health <= 0)
             {
                 IsAlive = false;

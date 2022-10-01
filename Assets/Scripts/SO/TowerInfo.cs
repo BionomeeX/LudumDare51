@@ -15,5 +15,6 @@ namespace LudumDare51.SO
         public int Damage;
         public float SpeedModifierForce;
         public float SpeedModifierDuration;
+        public bool CleanAll;
     }
 }
