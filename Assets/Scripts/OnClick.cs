@@ -2,7 +2,6 @@ using LudumDare51.SO;
 using LudumDare51.Tower;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,12 +27,16 @@ namespace LudumDare51
 
         public static OnClick Instance {private set; get;}
 
+        private int _layerTower;
+
         private void Awake()
         {
 
             Instance = this;
 
             _cam = Camera.main;
+
+            _layerTower = 1 << LayerMask.NameToLayer("TowerSlot");
 
             //var worldScale = _cam.ViewportToWorldPoint(Vector3.one);
 
@@ -84,7 +87,8 @@ namespace LudumDare51
         }
 
 
-        public void AddTower(Vector3 position) {
+        public void AddTower(Vector3 position)
+        {
             if (CurrentTowerInfo != null)
             {
                 var newtower = Instantiate(
@@ -101,6 +105,17 @@ namespace LudumDare51
 
         public void Click(InputAction.CallbackContext value)
         {
+            if (value.performed)
+            {
+                var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.MaxValue, _layerTower);
+                if (hit.collider != null)
+                {
+                    if (hit.collider.CompareTag("TowerSlot"))
+                    {
+                        AddTower(hit.collider.transform.position);
+                    }
+                }  
+            }
             // if (value.performed)
             // {
             //     if (_radialMenu.gameObject.activeInHierarchy)
