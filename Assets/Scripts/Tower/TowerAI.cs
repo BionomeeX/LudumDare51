@@ -18,6 +18,7 @@ namespace LudumDare51
         private void Awake()
         {
             GetComponent<CircleCollider2D>().radius = _info.Range;
+            GetComponent<SpriteRenderer>().color = _info.Color;
         }
 
         private void Update()

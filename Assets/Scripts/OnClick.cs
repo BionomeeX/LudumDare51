@@ -76,33 +76,34 @@ namespace LudumDare51
             //_towers[indexTowerHere].GetComponent<Tower>().ModifyType();
         }
 
-        public void Click(InputAction.CallbackContext value) {
-            if(active)
+        public void Click(InputAction.CallbackContext value)
+        {
+            if (active && value.performed)
             {
-                if(value.performed){
-                    var pos = Mouse.current.position.ReadValue();
-                    pos /= _gridsize;
-                    pos[0] = Mathf.Floor(pos[0]);
-                    pos[1] = Mathf.Floor(pos[1]);
+                var pos = Mouse.current.position.ReadValue();
+                pos /= _gridsize;
+                pos[0] = Mathf.Floor(pos[0]);
+                pos[1] = Mathf.Floor(pos[1]);
 
-                    // Compute world position of the center of the case where the mouse clicked
-                    var posOnTheWorld = _cam.ScreenToWorldPoint(
-                        new Vector3(
-                            pos[0] * _gridsize + _gridsize / 2,
-                            pos[1] * _gridsize + _gridsize / 2,
-                            _cam.nearClipPlane
-                        )
-                    );
+                // Compute world position of the center of the case where the mouse clicked
+                var posOnTheWorld = _cam.ScreenToWorldPoint(
+                    new Vector3(
+                        pos[0] * _gridsize + _gridsize / 2,
+                        pos[1] * _gridsize + _gridsize / 2,
+                        _cam.nearClipPlane
+                    )
+                );
 
-                    var indexTowerHere = WhichTowerExistsHere(posOnTheWorld);
-                    // check if there is already a turret
-                    if(indexTowerHere > -1){
-                        ClickOnATower(indexTowerHere, posOnTheWorld);
-                    }
-                    // Tower existing, modify tower type
-                    else {
-                        ClickOnEmptyCase(posOnTheWorld);
-                    }
+                var indexTowerHere = WhichTowerExistsHere(posOnTheWorld);
+                // check if there is already a turret
+                if (indexTowerHere > -1)
+                {
+                    ClickOnATower(indexTowerHere, posOnTheWorld);
+                }
+                // Tower existing, modify tower type
+                else
+                {
+                    ClickOnEmptyCase(posOnTheWorld);
                 }
             }
         }
@@ -131,12 +132,6 @@ namespace LudumDare51
 
                 Gizmos.DrawLine(start, stop);
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }

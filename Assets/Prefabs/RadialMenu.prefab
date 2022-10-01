@@ -51,8 +51,9 @@ MonoBehaviour:
   - {fileID: 8082099849577454777, guid: 654f42a101b156883869dcefa588934d, type: 3}
   tower: {fileID: 0}
   _radius: 2
-  posOnTheWorld: {x: 0, y: 0, z: 0}
+  myPosOnTheWorld: {x: 0, y: 0, z: 0}
   parent: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!114 &8294352551479401986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: da4c96053a82911f3bd40c934874bb6c, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: b0aa5e3e7dc06d001877068b985a1c2d, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -80,67 +81,55 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: ff27059e-503d-4b98-9051-6e3cacaa6dcf
+    m_ActionId: b3e808a6-1f0d-476a-a7ec-1c4cad9c3c89
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c2f6cfca-b632-4885-8914-3f0424a650f9
+    m_ActionId: 74891149-a1cf-4145-92f6-936943562e5d
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -49072604944679983}
-        m_TargetAssemblyTypeName: radialmenu, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: dac82833-618e-443c-865f-35dd2fa825c9
+      m_Calls: []
+    m_ActionId: fa0b9554-31bd-4b71-8e22-ccfd6c4d20c9
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 9097198e-3739-425f-8903-6f4ef632187b
+    m_ActionId: 1e8eaaa8-789a-4b52-a1f3-431bf4de11c2
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 9f7a13b3-82e1-4f06-b246-801aa3fad989
+    m_ActionId: 0daa6e6e-f712-4072-bfba-e0b3cdd408f0
     m_ActionName: UI/Submit[/Keyboard/enter]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 785564d4-96e3-4b96-a2bf-36c9871f118c
+    m_ActionId: 22786c68-a93e-4be0-9ac9-caeeb60c76dd
     m_ActionName: UI/Cancel[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 7e5abb64-1fe2-4875-8194-6ff8442e455e
+    m_ActionId: ceb6835b-5a18-49b8-992d-fcc58d168db8
     m_ActionName: UI/Point[/Mouse/position]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 03b51c43-ccba-4816-aead-db4d882d3ee6
+    m_ActionId: 98f6e02a-41b6-4b18-bdae-39792d6af5a4
     m_ActionName: UI/Click[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c09d78da-9a45-4a74-a8a8-d24cfaf7339e
+    m_ActionId: c66aaf51-0371-4c81-8799-36f700a38a0a
     m_ActionName: UI/ScrollWheel[/Mouse/scroll]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 2a7e935e-d6a7-4807-b880-4cc700668585
+    m_ActionId: 70b1372f-bafa-48dc-bb37-3641db997bd0
     m_ActionName: UI/MiddleClick[/Mouse/middleButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: e5911970-8b45-4ab3-9852-8c6dc1c025e0
+    m_ActionId: bdc9624f-05ce-4e34-ba82-b900c2820034
     m_ActionName: UI/RightClick[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: a74bd5c5-f14f-40fa-abfd-41e830f70903
+    m_ActionId: 5ffe2e6e-a76c-4dd3-9e6f-f82e9e031121
     m_ActionName: UI/TrackedDevicePosition
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: dd4df1b4-5747-46f3-a389-1dc57fb972f2
+    m_ActionId: 911152bf-f89a-4f5a-8a6f-9d376736d6ce
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
