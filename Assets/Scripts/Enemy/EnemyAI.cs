@@ -18,6 +18,8 @@ namespace LudumDare51.Enemy
         public bool IsAlive { private set; get; } = true;
         private bool _isBeingEaten = false;
 
+        private Eater _eater;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -45,6 +47,7 @@ namespace LudumDare51.Enemy
                 }
                 else
                 {
+                    _eater.AddEat();
                     Destroy(gameObject);
                 }
             }
@@ -55,7 +58,8 @@ namespace LudumDare51.Enemy
             if (!IsAlive && collision.CompareTag("Goal"))
             {
                 _isBeingEaten = true;
-                NextNode = collision.GetComponentInParent<Eater>().Goal;
+                _eater = collision.GetComponentInParent<Eater>();
+                NextNode = _eater.Goal;
                 _rb.constraints = RigidbodyConstraints2D.None;
                 _rb.AddTorque(100f * Random.Range(0, 2) == 0 ? -1f : 1f, ForceMode2D.Impulse);
             }
