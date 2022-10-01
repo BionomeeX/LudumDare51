@@ -19,17 +19,36 @@ namespace LudumDare51
         [SerializeField]
         private RadialMenu _radialMenu;
 
-        private TowerInfo _currentTowerInfo;
+        public TowerInfo CurrentTowerInfo {private set; get;}
 
         [SerializeField]
         private TowerInfo[] _info;
 
         private readonly List<GameObject> _towers = new();
 
+        public static OnClick Instance {private set; get;}
+
         private void Awake()
         {
+
+            Instance = this;
+
             _cam = Camera.main;
-            _gridsize = Mathf.CeilToInt(_tower.GetComponent<CircleCollider2D>().radius * 100f * _tower.transform.localScale.x);
+
+            //var worldScale = _cam.ViewportToWorldPoint(Vector3.one);
+
+            _gridsize = Mathf.FloorToInt(
+                _tower.GetComponent<CircleCollider2D>().radius * _tower.transform.localScale.x
+            );
+
+            // Debug.Log(worldScale[0]);
+            // Debug.Log(worldScale[1]);
+            // Debug.Log(worldScale[2]);
+
+            // Debug.Log(_tower.transform.localScale.x);
+            // Debug.Log(_tower.GetComponent<CircleCollider2D>().radius);
+            // Debug.Log(_gridsize);
+
         }
 
         private bool TowerExistOnPos(GameObject tower, Vector3 posOnTheWorld){
@@ -46,7 +65,7 @@ namespace LudumDare51
         }
 
         private void ClickOnEmptyCase(Vector3 posOnTheWorld) {
-            if (_currentTowerInfo != null)
+            if (CurrentTowerInfo != null)
             {
                 var newtower = Instantiate(
                     _tower,
@@ -54,7 +73,7 @@ namespace LudumDare51
                     Quaternion.identity
                 );
 
-                newtower.GetComponent<TowerAI>().Info = _currentTowerInfo;
+                newtower.GetComponent<TowerAI>().Info = CurrentTowerInfo;
                 _towers.Add(newtower);
             }
         }
@@ -62,79 +81,94 @@ namespace LudumDare51
         private void ClickOnATower(GameObject tower, Vector3 posOnTheWorld) {
             _radialMenu.MyPosOnTheWorld = posOnTheWorld;
             _radialMenu.gameObject.SetActive(true);
-            //_towers[indexTowerHere].GetComponent<Tower>().ModifyType();
         }
+
+
+        public void AddTower(Vector3 position) {
+            if (CurrentTowerInfo != null)
+            {
+                var newtower = Instantiate(
+                    _tower,
+                    position,
+                    Quaternion.identity
+                );
+
+                newtower.GetComponent<TowerAI>().Info = CurrentTowerInfo;
+                _towers.Add(newtower);
+            }
+        }
+
 
         public void Click(InputAction.CallbackContext value)
         {
-            if (value.performed)
-            {
-                if (_radialMenu.gameObject.activeInHierarchy)
-                {
-                    _radialMenu.Click();
-                    _radialMenu.gameObject.SetActive(false);
-                }
-                else
-                {
-                    var pos = Mouse.current.position.ReadValue();
-                    pos /= _gridsize;
-                    pos[0] = Mathf.Floor(pos[0]);
-                    pos[1] = Mathf.Floor(pos[1]);
+            // if (value.performed)
+            // {
+            //     if (_radialMenu.gameObject.activeInHierarchy)
+            //     {
+            //         _radialMenu.Click();
+            //         _radialMenu.gameObject.SetActive(false);
+            //     }
+            //     else
+            //     {
+            //         var pos = Mouse.current.position.ReadValue();
+            //         pos /= _gridsize;
+            //         pos[0] = Mathf.Floor(pos[0]);
+            //         pos[1] = Mathf.Floor(pos[1]);
 
-                    // Compute world position of the center of the case where the mouse clicked
-                    var posOnTheWorld = _cam.ScreenToWorldPoint(
-                        new Vector3(
-                            pos[0] * _gridsize + _gridsize / 2,
-                            pos[1] * _gridsize + _gridsize / 2,
-                            _cam.nearClipPlane
-                        )
-                    );
+            //         // Compute world position of the center of the case where the mouse clicked
+            //         var posOnTheWorld = _cam.ScreenToWorldPoint(
+            //             new Vector3(
+            //                 pos[0] * _gridsize + _gridsize / 2,
+            //                 pos[1] * _gridsize + _gridsize / 2,
+            //                 _cam.nearClipPlane
+            //             )
+            //         );
 
-                    var towerHere = WhichTowerExistsHere(posOnTheWorld);
-                    // check if there is already a turret
-                    if (towerHere != null)
-                    {
-                        ClickOnATower(towerHere, posOnTheWorld);
-                    }
-                    // Tower existing, modify tower type
-                    else
-                    {
-                        ClickOnEmptyCase(posOnTheWorld);
-                    }
-                }
-            }
+            //         var towerHere = WhichTowerExistsHere(posOnTheWorld);
+            //         // check if there is already a turret
+            //         if (towerHere != null)
+            //         {
+            //             ClickOnATower(towerHere, posOnTheWorld);
+            //         }
+            //         // Tower existing, modify tower type
+            //         else
+            //         {
+            //             ClickOnEmptyCase(posOnTheWorld);
+            //         }
+            //     }
+            // }
         }
 
         private void OnDrawGizmos()
         {
-            if (EditorApplication.isPlaying)
-            {
-                var x = 1 + Mathf.FloorToInt((_cam.pixelWidth - 1) / _gridsize);
-                var y = 1 + Mathf.FloorToInt((_cam.pixelHeight - 1) / _gridsize);
-                Gizmos.color = new Color(1f, 1f, 1f, .5f);
+            // if (EditorApplication.isPlaying)
+            // {
+            //     var x = 1 + Mathf.FloorToInt((_cam.pixelWidth - 1) / _gridsize);
+            //     var y = 1 + Mathf.FloorToInt((_cam.pixelHeight - 1) / _gridsize);
+            //     Gizmos.color = new Color(1f, 1f, 1f, .5f);
 
-                for (var i = 0; i < x; ++i)
-                {
+            //     for (var i = 0; i < x; ++i)
+            //     {
 
-                    var start = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, 0, _cam.nearClipPlane));
-                    var stop = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, _cam.pixelHeight, _cam.nearClipPlane));
+            //         var start = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, 0, _cam.nearClipPlane));
+            //         var stop = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, _cam.pixelHeight, _cam.nearClipPlane));
 
-                    Gizmos.DrawLine(start, stop);
-                }
-                for (var i = 0; i < y; ++i)
-                {
+            //         Gizmos.DrawLine(start, stop);
+            //     }
+            //     for (var i = 0; i < y; ++i)
+            //     {
 
-                    var start = _cam.ScreenToWorldPoint(new Vector3(0, i * _gridsize, _cam.nearClipPlane));
-                    var stop = _cam.ScreenToWorldPoint(new Vector3(_cam.pixelWidth, i * _gridsize, _cam.nearClipPlane));
+            //         var start = _cam.ScreenToWorldPoint(new Vector3(0, i * _gridsize, _cam.nearClipPlane));
+            //         var stop = _cam.ScreenToWorldPoint(new Vector3(_cam.pixelWidth, i * _gridsize, _cam.nearClipPlane));
 
-                    Gizmos.DrawLine(start, stop);
-                }
-            }
+            //         Gizmos.DrawLine(start, stop);
+            //     }
+            // }
         }
 
         public void SetTowerInfo(int infoIndex)
         {
-            _currentTowerInfo = _info[infoIndex];
+            CurrentTowerInfo = _info[infoIndex];
         }
     }
 }
