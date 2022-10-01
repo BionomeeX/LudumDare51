@@ -7,6 +7,8 @@ namespace LudumDare51.Tower
     {
         public float Speed { set; private get; }
         public Vector2 Target { set; private get; }
+        public float SplashRange { set; private get; }
+        public int Damage { set; private get; }
 
         private void Start()
         {
@@ -22,7 +24,21 @@ namespace LudumDare51.Tower
         {
             if (collision.collider.CompareTag("Enemy"))
             {
-                collision.collider.GetComponent<EnemyAI>().TakeDamage(1);
+                if (SplashRange == -1)
+                {
+                    collision.collider.GetComponent<EnemyAI>().TakeDamage(Damage);
+                }
+                else
+                {
+                    var collisions = Physics2D.OverlapCircleAll(collision.contacts[0].point, SplashRange);
+                    foreach (var coll in collisions)
+                    {
+                        if (coll.CompareTag("Enemy"))
+                        {
+                            coll.GetComponent<EnemyAI>().TakeDamage(Damage);
+                        }
+                    }
+                }
             }
             Destroy(gameObject);
         }

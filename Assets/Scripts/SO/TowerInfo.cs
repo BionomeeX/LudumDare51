@@ -8,8 +8,10 @@ namespace LudumDare51.SO
     {
         public int Range;
         public int ReloadTime;
+        public int SplashDamageRange;
         public GameObject Bullet;
         public DamageInfo[] DamageModifiers;
         public Sprite Sprite;
+        public int Damage;
     }
 }

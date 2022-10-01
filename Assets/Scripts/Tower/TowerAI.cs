@@ -31,6 +31,8 @@ namespace LudumDare51.Tower
                     var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
                     bullet.Speed = 10;
                     bullet.Target = _enemiesInRange[0].transform.position;
+                    bullet.SplashRange = Info.SplashDamageRange;
+                    bullet.Damage = Info.Damage;
                     Destroy(bullet.gameObject, 5f);
                     StartCoroutine(Reload());
                     _canShoot = false;

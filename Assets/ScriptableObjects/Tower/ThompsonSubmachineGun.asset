@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba684ea12c81e454181dbe0aa1994246, type: 3}
-  m_Name: TowerTomato
+  m_Name: ThompsonSubmachineGun
   m_EditorClassIdentifier: 
   Range: 1
   ReloadTime: 1
+  SplashDamageRange: -1
   Bullet: {fileID: 2643107716775651414, guid: 3f5bfad10da39dc4099f853de24764a8, type: 3}
-  DamageModifiers:
-  - Type: 0
-    DamageMultiplier: 1
-  - Type: 1
-    DamageMultiplier: 0
+  DamageModifiers: []
   Sprite: {fileID: 101428441, guid: 4be828c2f82041c4e82f52d8866ca406, type: 3}
+  Damage: 3
