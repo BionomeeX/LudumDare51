@@ -1,3 +1,5 @@
+using LudumDare51.SO;
+using LudumDare51.Tower;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -16,6 +18,11 @@ namespace LudumDare51
 
         [SerializeField]
         private RadialMenu _radialMenu;
+
+        private TowerInfo _currentTowerInfo;
+
+        [SerializeField]
+        private TowerInfo[] _info;
 
         private readonly List<GameObject> _towers = new();
 
@@ -39,17 +46,20 @@ namespace LudumDare51
         }
 
         private void ClickOnEmptyCase(Vector3 posOnTheWorld) {
-            var newtower = Instantiate(
-                _tower,
-                posOnTheWorld,
-                Quaternion.identity
-            );
+            if (_currentTowerInfo != null)
+            {
+                var newtower = Instantiate(
+                    _tower,
+                    posOnTheWorld,
+                    Quaternion.identity
+                );
 
-            _towers.Add(newtower);
+                newtower.GetComponent<TowerAI>().Info = _currentTowerInfo;
+                _towers.Add(newtower);
+            }
         }
 
         private void ClickOnATower(GameObject tower, Vector3 posOnTheWorld) {
-            _radialMenu.Tower = tower;
             _radialMenu.MyPosOnTheWorld = posOnTheWorld;
             _radialMenu.gameObject.SetActive(true);
             //_towers[indexTowerHere].GetComponent<Tower>().ModifyType();
@@ -121,6 +131,11 @@ namespace LudumDare51
                     Gizmos.DrawLine(start, stop);
                 }
             }
+        }
+
+        public void SetTowerInfo(int infoIndex)
+        {
+            _currentTowerInfo = _info[infoIndex];
         }
     }
 }

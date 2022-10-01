@@ -1,7 +1,7 @@
 ﻿using LudumDare51.Enemy;
 using UnityEngine;
 
-namespace LudumDare51
+namespace LudumDare51.Tower
 {
     public class Bullet : MonoBehaviour
     {

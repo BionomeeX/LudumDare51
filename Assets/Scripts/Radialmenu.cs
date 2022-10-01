@@ -35,9 +35,6 @@ namespace LudumDare51
             }
             get => _myPosOnTheWorld;
         }
-        public GameObject Tower { set; private get; }
-
-        private OnClick _parent;
 
         private readonly List<GameObject> _buttons = new();
 
@@ -46,7 +43,6 @@ namespace LudumDare51
         private void Awake()
         {
             _cam = Camera.main;
-            _parent = transform.parent.GetComponent<OnClick>();
 
             if (_buttons_prefab.Count > 0)
             {

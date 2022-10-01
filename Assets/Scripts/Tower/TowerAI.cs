@@ -4,21 +4,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LudumDare51
+namespace LudumDare51.Tower
 {
     public class TowerAI : MonoBehaviour
     {
-        [SerializeField]
-        private TowerInfo _info;
+        public TowerInfo Info { set; private get; }
 
         private List<EnemyAI> _enemiesInRange = new();
 
         private bool _canShoot = true;
 
-        private void Awake()
+        private void Start()
         {
-            GetComponent<CircleCollider2D>().radius = _info.Range;
-            GetComponent<SpriteRenderer>().color = _info.Color;
+            GetComponent<CircleCollider2D>().radius = Info.Range;
+            GetComponent<SpriteRenderer>().color = Info.Color;
         }
 
         private void Update()
@@ -28,7 +27,7 @@ namespace LudumDare51
                 _enemiesInRange.RemoveAll(x => x.gameObject == null);
                 if (_enemiesInRange.Count > 0)
                 {
-                    var bullet = Instantiate(_info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
+                    var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
                     bullet.Speed = 50;
                     bullet.Target = _enemiesInRange[0].transform.position;
                     Destroy(bullet.gameObject, 5f);
@@ -40,7 +39,7 @@ namespace LudumDare51
 
         private IEnumerator Reload()
         {
-            yield return new WaitForSeconds(_info.ReloadTime);
+            yield return new WaitForSeconds(Info.ReloadTime);
             _canShoot = true;
         }
 
