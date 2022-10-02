@@ -29,18 +29,18 @@ namespace LudumDare51.Tower
 
         private void Update()
         {
-            if (_canShoot)
+            _enemiesInRange.RemoveAll(x => !x.IsAlive);
+            if (Info.UseFire)
             {
-                _enemiesInRange.RemoveAll(x => !x.IsAlive);
-                if (Info.UseFire)
+                _fireChildPivot.SetActive(_enemiesInRange.Any());
+                if (_enemiesInRange.Any())
                 {
-                    _fireChildPivot.SetActive(_enemiesInRange.Any());
-                    if (_enemiesInRange.Any())
+                    Vector3 targetPos = _enemiesInRange[0].transform.position;
+                    Vector2 direction = targetPos - transform.position;
+                    var euler = Quaternion.FromToRotation(Vector3.up, direction).eulerAngles;
+                    transform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + 90f);
+                    if (_canShoot)
                     {
-                        Vector3 targetPos = _enemiesInRange[0].transform.position;
-                        Vector2 direction = targetPos - transform.position;
-                        var euler = Quaternion.FromToRotation(Vector3.up, direction).eulerAngles;
-                        transform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + 90f);
                         List<Collider2D> res = new();
                         Physics2D.OverlapCollider(_flameCollider, new ContactFilter2D(), res);
                         foreach (var c in res)
@@ -54,8 +54,12 @@ namespace LudumDare51.Tower
                         _canShoot = false;
                     }
                 }
-                else
+            }
+            else
+            {
+                if (_canShoot)
                 {
+                    _enemiesInRange.RemoveAll(x => !x.IsAlive);
                     if (_enemiesInRange.Any())
                     {
                         var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
