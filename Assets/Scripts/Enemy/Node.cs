@@ -1,3 +1,4 @@
+using Assets.Scripts.Enemy.Salve;
 using UnityEngine;
 
 namespace LudumDare51.Enemy
@@ -7,7 +8,12 @@ namespace LudumDare51.Enemy
         [SerializeField]
         private Node _nextNode;
 
+        [SerializeField]
+        private Salve[] _salves;
+
         public Node NextNode => _nextNode;
+
+        public Salve[] Salves => _salves;
 
         private void OnDrawGizmos()
         {
