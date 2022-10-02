@@ -11,6 +11,12 @@ namespace LudumDare51
         [SerializeField]
         private TMP_Text _progText;
 
+        [SerializeField]
+        private AudioSource _bgm;
+
+        [SerializeField]
+        private AudioClip[] _clips;
+
         public static EaterManager Instance { get; private set; }
 
         private void Awake()
@@ -25,17 +31,30 @@ namespace LudumDare51
             _nbEaten.Add(eater, 0);
         }
 
+        private int oldLevel = 0;
         public void AddEat(Eater eater)
         {
             _nbEaten[eater]++;
 
             var average = _nbEaten.Values.Sum() / _nbEaten.Count;
+            var maxLevel = 0;
             foreach (var e in _nbEaten.Keys)
             {
                 var level = _nbEaten[e] - average;
+                var lR = level / 10;
+                if (lR > maxLevel) maxLevel = lR;
                 e.UpdateSprite(level < 0 ? 0 : level);
             }
             UpdateNachoverflowValue(-1);
+
+            if (maxLevel != oldLevel)
+            {
+                oldLevel = maxLevel;
+                var pos = _bgm.time;
+                _bgm.clip = _clips[oldLevel];
+                _bgm.Play();
+                _bgm.time = pos;
+            }
         }
 
         public void UpdateNachoverflowValue(int modifier)
