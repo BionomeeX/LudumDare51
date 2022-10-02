@@ -20,5 +20,6 @@ namespace LudumDare51.SO
         public float Spread;
         public int NumberBullets = 1;
         public bool TargetDeadPeople;
+        public float MinRange;
     }
 }

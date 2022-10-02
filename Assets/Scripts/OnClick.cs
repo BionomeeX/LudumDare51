@@ -17,6 +17,9 @@ namespace LudumDare51
         private LineRenderer _lr;
 
         [SerializeField]
+        private LineRenderer _closeLr;
+
+        [SerializeField]
         private GameObject _tower;
 
         [SerializeField]
@@ -140,15 +143,33 @@ namespace LudumDare51
                         pos = new Vector3(x, y, 0);
                         _lr.SetPosition(i, pos);
                     }
+
+                    _closeLr.enabled = CurrentTowerInfo.MinRange > 0f;
+                    if (CurrentTowerInfo.MinRange > 0f)
+                    {
+                        _closeLr.positionCount = size;
+                        var cr = CurrentTowerInfo.MinRange * 2f;
+                        theta = 0f;
+                        for (int i = 0; i < size; i++)
+                        {
+                            theta += (2.0f * Mathf.PI * thetaScale);
+                            float x = cr * Mathf.Cos(theta) + p.x;
+                            float y = cr * Mathf.Sin(theta) + p.y;
+                            pos = new Vector3(x, y, 0);
+                            _closeLr.SetPosition(i, pos);
+                        }
+                    }
                 }
                 else
                 {
                     _lr.enabled = false;
+                    _closeLr.enabled = false;
                 }
             }
             else
             {
                 _lr.enabled = false;
+                _closeLr.enabled = false;
             }
         }
 

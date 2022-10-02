@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba684ea12c81e454181dbe0aa1994246, type: 3}
-  m_Name: Sniper
+  m_Name: Mortar
   m_EditorClassIdentifier: 
-  Range: 3
-  ReloadTime: 10
-  SplashDamageRange: -1
+  Range: 5
+  ReloadTime: 5
+  SplashDamageRange: 1
   Bullet: {fileID: 2643107716775651414, guid: 3f5bfad10da39dc4099f853de24764a8, type: 3}
   DamageModifiers: []
-  Sprite: {fileID: -1879219236, guid: e6b037661e3fe0e468d0f721c5a74c94, type: 3}
-  Damage: 20
+  Sprite: {fileID: -253171337, guid: 8f93762ff4ec4e341b3ac64506c8bed6, type: 3}
+  Damage: 10
   SpeedModifierForce: 0
   SpeedModifierDuration: 0
   CleanAll: 1
@@ -26,4 +26,4 @@ MonoBehaviour:
   Spread: 0
   NumberBullets: 1
   TargetDeadPeople: 0
-  MinRange: 1
+  MinRange: 2.5
