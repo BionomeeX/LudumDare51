@@ -17,5 +17,7 @@ namespace LudumDare51.SO
         public float SpeedModifierDuration;
         public bool CleanAll;
         public bool UseFire;
+        public float Spread;
+        public int NumberBullets = 1;
     }
 }
