@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba684ea12c81e454181dbe0aa1994246, type: 3}
   m_Name: ChillyPepper
   m_EditorClassIdentifier: 
-  Range: 0.5
+  Range: 0.75
   ReloadTime: 0.25
   SplashDamageRange: -1
   Bullet: {fileID: 2643107716775651414, guid: 3f5bfad10da39dc4099f853de24764a8, type: 3}
@@ -23,3 +23,6 @@ MonoBehaviour:
   SpeedModifierDuration: 0
   CleanAll: 0
   UseFire: 1
+  Spread: 0
+  NumberBullets: 1
+  TargetDeadPeople: 0
