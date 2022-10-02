@@ -40,10 +40,7 @@ namespace LudumDare51.Enemy
         {
             StartCoroutine(NextWave());
             _inventory = new int[_buttonInfo.Length];
-            for (int i = 0; i < _buttonInfo.Length; i++)
-            {
-                _inventory[i] = 1;
-            }
+            _inventory[0] = 3;
             UpdateInventory();
         }
 
