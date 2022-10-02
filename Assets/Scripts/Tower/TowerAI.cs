@@ -30,7 +30,7 @@ namespace LudumDare51.Tower
         private void Update()
         {
             _enemiesInRange.RemoveAll(x => x.gameObject == null);
-            var target = _enemiesInRange.FirstOrDefault(x => Info.TargetDeadPeople || x.IsAlive);
+            var target = _enemiesInRange.FirstOrDefault(x => (Info.TargetDeadPeople || x.IsAlive) && (Info.MinRange <= 0f || Vector2.Distance(x.transform.position, transform.position) > Info.MinRange));
             if (Info.UseFire)
             {
                 _fireChildPivot.SetActive(target != null);
