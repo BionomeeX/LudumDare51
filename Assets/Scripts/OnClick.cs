@@ -129,7 +129,7 @@ namespace LudumDare51
                     _lr.positionCount = size;
                     var p = hit.collider.transform.position;
 
-                    var r = CurrentTowerInfo.Range;
+                    var r = CurrentTowerInfo.Range * 2f;
                     Vector3 pos;
                     float theta = 0f;
                     for (int i = 0; i < size; i++)
