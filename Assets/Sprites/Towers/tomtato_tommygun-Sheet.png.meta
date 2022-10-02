@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: edc10f23849999145985c9092cc8892d
+guid: de430a6cdbf543245972e4bd4a090129
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -68,7 +68,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -118,12 +118,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: avocado_bazooka0-Sheet_0
+      name: tomtato_tommygun-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 36
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -132,19 +132,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db3e58923042c734380d0ddc8ebd8ac2
-      internalID: 1666605045
+      spriteID: abb9b945afa25ec4d87976e3d064390b
+      internalID: 1340606124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: avocado_bazooka0-Sheet_1
+      name: tomtato_tommygun-Sheet_1
       rect:
         serializedVersion: 2
-        x: 36
+        x: 32
         y: 0
-        width: 36
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bf8fd6e1d3d4ae46a4551b298bb3548
-      internalID: -1866510585
+      spriteID: 8eb3c11747626a248bba1e0c7c613e1d
+      internalID: -1920995741
       vertices: []
       indices: 
       edges: []
@@ -170,8 +170,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      avocado_bazooka0-Sheet_0: 1666605045
-      avocado_bazooka0-Sheet_1: -1866510585
+      tomtato_tommygun-Sheet_1: -1920995741
+      tomtato_tommygun-Sheet_0: 1340606124
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
