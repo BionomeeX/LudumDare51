@@ -29,13 +29,14 @@ namespace LudumDare51.Tower
 
         private void Update()
         {
-            _enemiesInRange.RemoveAll(x => !x.IsAlive);
+            _enemiesInRange.RemoveAll(x => x.gameObject == null);
+            var target = _enemiesInRange.FirstOrDefault(x => Info.TargetDeadPeople || x.IsAlive);
             if (Info.UseFire)
             {
-                _fireChildPivot.SetActive(_enemiesInRange.Any());
-                if (_enemiesInRange.Any())
+                _fireChildPivot.SetActive(target != null);
+                if (target != null)
                 {
-                    Vector3 targetPos = _enemiesInRange[0].transform.position;
+                    Vector3 targetPos = target.transform.position;
                     Vector2 direction = targetPos - transform.position;
                     var euler = Quaternion.FromToRotation(Vector3.up, direction).eulerAngles;
                     transform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + 90f);
@@ -57,21 +58,17 @@ namespace LudumDare51.Tower
             }
             else
             {
-                if (_canShoot)
+                if (_canShoot && target != null)
                 {
-                    _enemiesInRange.RemoveAll(x => !x.IsAlive);
-                    if (_enemiesInRange.Any())
+                    for (var i = 0; i < Info.NumberBullets; i++)
                     {
-                        for (var i = 0; i < Info.NumberBullets; i++)
-                        {
-                            var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
-                            bullet.Speed = 10;
-                            bullet.Target = _enemiesInRange[0].transform.position + new Vector3(Random.Range(-Info.Spread, Info.Spread), Random.Range(-Info.Spread, Info.Spread));
-                            bullet.Info = Info;
-                            Destroy(bullet.gameObject, 5f);
-                            StartCoroutine(Reload());
-                            _canShoot = false;
-                        }
+                        var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
+                        bullet.Speed = 10;
+                        bullet.Target = target.transform.position + new Vector3(Random.Range(-Info.Spread, Info.Spread), Random.Range(-Info.Spread, Info.Spread));
+                        bullet.Info = Info;
+                        Destroy(bullet.gameObject, 5f);
+                        StartCoroutine(Reload());
+                        _canShoot = false;
                     }
                 }
             }

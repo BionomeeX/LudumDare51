@@ -19,5 +19,6 @@ namespace LudumDare51.SO
         public bool UseFire;
         public float Spread;
         public int NumberBullets = 1;
+        public bool TargetDeadPeople;
     }
 }
