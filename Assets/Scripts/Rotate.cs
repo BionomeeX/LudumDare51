@@ -8,7 +8,7 @@ namespace LudumDare51
 
         private void Awake()
         {
-            _speed = Random.Range(30f, 50f) * (Random.Range(0, 2) == 0 ? 1f : -1f);
+            _speed = Random.Range(300f, 500f) * (Random.Range(0, 2) == 0 ? 1f : -1f);
         }
 
         private void Update()
