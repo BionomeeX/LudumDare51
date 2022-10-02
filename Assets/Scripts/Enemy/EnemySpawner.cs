@@ -18,18 +18,13 @@ namespace LudumDare51.Enemy
         private Button[] _buttonInfo;
 
         [SerializeField]
-        private Transform _spawnPoint;
-
-        [SerializeField]
-        private Node _firstNode;
-
-        [SerializeField]
         private GameObject _itemPick, _itemPickContainer;
 
         [SerializeField]
         private GameObject _itemPrefab;
 
         private int[] _inventory;
+
         private int round;
 
         private void Awake()
