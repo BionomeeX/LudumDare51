@@ -1,5 +1,7 @@
+using LudumDare51.Enemy;
 using LudumDare51.SO;
 using LudumDare51.Tower;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -99,6 +101,7 @@ namespace LudumDare51
 
                 newtower.GetComponent<TowerAI>().Info = CurrentTowerInfo;
                 _towers.Add(newtower);
+                EnemySpawner.Instance.RemoveTower(Array.IndexOf(_info, CurrentTowerInfo));
                 CurrentTowerInfo = null;
             }
         }

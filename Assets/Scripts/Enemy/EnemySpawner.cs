@@ -7,6 +7,8 @@ namespace LudumDare51.Enemy
 {
     public class EnemySpawner : MonoBehaviour
     {
+        public static EnemySpawner Instance { private set; get; }
+
         [SerializeField]
         private GameObject _enemyPrefab;
 
@@ -22,6 +24,11 @@ namespace LudumDare51.Enemy
         private Node _firstNode;
 
         private int[] _inventory;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         private void Start()
         {
@@ -55,6 +62,12 @@ namespace LudumDare51.Enemy
                 yield return Spawn();
                 yield return new WaitForSeconds(10f);
             }
+        }
+
+        public void RemoveTower(int index)
+        {
+            _inventory[index]--;
+            UpdateInventory();
         }
 
         private void UpdateInventory()
