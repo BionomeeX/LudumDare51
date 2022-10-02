@@ -13,6 +13,8 @@ namespace LudumDare51.Enemy
 
         public Node NextNode => _nextNode;
 
+        public Salve[] Salves => _salves;
+
         private void OnDrawGizmos()
         {
             if (NextNode != null)
