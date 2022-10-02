@@ -15,9 +15,10 @@ MonoBehaviour:
   Range: 1
   ReloadTime: 2
   SplashDamageRange: -1
-  Bullet: {fileID: 2643107716775651414, guid: 3f5bfad10da39dc4099f853de24764a8, type: 3}
+  Bullet: {fileID: 2643107716775651414, guid: d808703acffb33840b926cfd89de24b4, type: 3}
   DamageModifiers: []
   Sprite: {fileID: -1368650298, guid: a3e7fc396a28eaa41b66429d769c0018, type: 3}
   Damage: 1
   SpeedModifierForce: 0.5
   SpeedModifierDuration: 2
+  CleanAll: 0

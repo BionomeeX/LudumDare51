@@ -17,6 +17,18 @@ namespace LudumDare51.Enemy
         [SerializeField]
         private Button[] _buttonInfo;
 
+        [SerializeField]
+        private Transform _spawnPoint;
+
+        [SerializeField]
+        private Node _firstNode;
+
+        [SerializeField]
+        private GameObject _itemPick, _itemPickContainer;
+
+        [SerializeField]
+        private GameObject _itemPrefab;
+
         private int[] _inventory;
         private int round;
 
@@ -30,13 +42,28 @@ namespace LudumDare51.Enemy
         {
             StartCoroutine(NextWave());
             _inventory = new int[_buttonInfo.Length];
-            _inventory[0] = 1;
+            _inventory[0] = 3;
             UpdateInventory();
         }
 
         private IEnumerator Spawn()
         {
-            print("Round " + round);
+            _itemPick.SetActive(true);
+            for (int i = 0; i < _itemPickContainer.transform.childCount; i++) Destroy(_itemPickContainer.transform.GetChild(i).gameObject);
+
+            for (int i = 0; i < 3; i++)
+            {
+                var go = Instantiate(_itemPrefab, _itemPickContainer.transform);
+                var index = Random.Range(0, OnClick.Instance.Info.Length);
+                var randButton = OnClick.Instance.Info[index];
+                go.GetComponent<ButtonInit>().Init(() =>
+                {
+                    _inventory[index]++;
+                    _itemPick.SetActive(false);
+                    UpdateInventory();
+                }, randButton.Sprite);
+            }
+
             foreach (var spawner in GameObject.FindGameObjectsWithTag("Spawner").Select(x => x.GetComponent<Node>()))
             {
                 foreach (var salve in spawner.Salves)

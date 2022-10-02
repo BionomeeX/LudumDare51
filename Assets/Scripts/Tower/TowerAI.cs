@@ -9,6 +9,12 @@ namespace LudumDare51.Tower
 {
     public class TowerAI : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject _fireChildPivot;
+
+        [SerializeField]
+        private Collider2D _flameCollider;
+
         public TowerInfo Info { set; private get; }
 
         private List<EnemyAI> _enemiesInRange = new();
@@ -23,18 +29,50 @@ namespace LudumDare51.Tower
 
         private void Update()
         {
-            if (_canShoot)
+            _enemiesInRange.RemoveAll(x => !x.IsAlive);
+            if (Info.UseFire)
             {
-                _enemiesInRange.RemoveAll(x => !x.IsAlive);
+                _fireChildPivot.SetActive(_enemiesInRange.Any());
                 if (_enemiesInRange.Any())
                 {
-                    var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
-                    bullet.Speed = 10;
-                    bullet.Target = _enemiesInRange[0].transform.position;
-                    bullet.Info = Info;
-                    Destroy(bullet.gameObject, 5f);
-                    StartCoroutine(Reload());
-                    _canShoot = false;
+                    Vector3 targetPos = _enemiesInRange[0].transform.position;
+                    Vector2 direction = targetPos - transform.position;
+                    var euler = Quaternion.FromToRotation(Vector3.up, direction).eulerAngles;
+                    transform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + 90f);
+                    if (_canShoot)
+                    {
+                        List<Collider2D> res = new();
+                        Physics2D.OverlapCollider(_flameCollider, new ContactFilter2D(), res);
+                        foreach (var c in res)
+                        {
+                            if (c.CompareTag("Enemy"))
+                            {
+                                c.GetComponent<EnemyAI>().TakeDamage(Info);
+                            }
+                        }
+                        StartCoroutine(Reload());
+                        _canShoot = false;
+                    }
+                }
+            }
+            else
+            {
+                if (_canShoot)
+                {
+                    _enemiesInRange.RemoveAll(x => !x.IsAlive);
+                    if (_enemiesInRange.Any())
+                    {
+                        for (var i = 0; i < Info.NumberBullets; i++)
+                        {
+                            var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
+                            bullet.Speed = 10;
+                            bullet.Target = _enemiesInRange[0].transform.position + new Vector3(Random.Range(-Info.Spread, Info.Spread), Random.Range(-Info.Spread, Info.Spread));
+                            bullet.Info = Info;
+                            Destroy(bullet.gameObject, 5f);
+                            StartCoroutine(Reload());
+                            _canShoot = false;
+                        }
+                    }
                 }
             }
         }

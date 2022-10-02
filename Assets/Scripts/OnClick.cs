@@ -25,6 +25,8 @@ namespace LudumDare51
         [SerializeField]
         private TowerInfo[] _info;
 
+        public TowerInfo[] Info => _info;
+
         private readonly List<GameObject> _towers = new();
 
         public static OnClick Instance {private set; get;}
