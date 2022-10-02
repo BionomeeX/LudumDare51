@@ -1,6 +1,7 @@
 ﻿using LudumDare51.SO;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LudumDare51.Enemy
 {
@@ -11,6 +12,8 @@ namespace LudumDare51.Enemy
 
         [SerializeField]
         private EnemyInfo[] _enemyInfo;
+        [SerializeField]
+        private Button[] _buttonInfo;
 
         [SerializeField]
         private Transform _spawnPoint;
@@ -18,9 +21,14 @@ namespace LudumDare51.Enemy
         [SerializeField]
         private Node _firstNode;
 
+        private int[] _inventory;
+
         private void Start()
         {
             StartCoroutine(NextWave());
+            _inventory = new int[_buttonInfo.Length];
+            _inventory[0] = 1;
+            UpdateInventory();
         }
 
         private IEnumerator Spawn()
@@ -46,6 +54,14 @@ namespace LudumDare51.Enemy
             {
                 yield return Spawn();
                 yield return new WaitForSeconds(10f);
+            }
+        }
+
+        private void UpdateInventory()
+        {
+            for (int i = 0; i < _inventory.Length; i++)
+            {
+                _buttonInfo[i].gameObject.SetActive(_inventory[i] > 0);
             }
         }
     }

@@ -328,6 +328,12 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 6599858667969682816, guid: fba7facbf12348040b68005990d0d0b5, type: 3}
   _enemyInfo:
   - {fileID: 11400000, guid: 2834ed77a17599f499ef75af94e5e0f0, type: 2}
+  _buttonInfo:
+  - {fileID: 2002594735}
+  - {fileID: 1701662927}
+  - {fileID: 1142754239}
+  - {fileID: 631990828}
+  - {fileID: 767147522}
   _spawnPoint: {fileID: 805787088}
   _firstNode: {fileID: 6168659041927750543}
 --- !u!4 &310640305 stripped

@@ -89,7 +89,7 @@ namespace LudumDare51
 
         public void AddTower(Vector3 position)
         {
-            if (CurrentTowerInfo != null)
+            if (CurrentTowerInfo != null) // TODO: check if there is no turret already there
             {
                 var newtower = Instantiate(
                     _tower,
@@ -99,6 +99,7 @@ namespace LudumDare51
 
                 newtower.GetComponent<TowerAI>().Info = CurrentTowerInfo;
                 _towers.Add(newtower);
+                CurrentTowerInfo = null;
             }
         }
 
