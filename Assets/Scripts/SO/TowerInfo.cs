@@ -7,7 +7,7 @@ namespace LudumDare51.SO
     public class TowerInfo : ScriptableObject
     {
         public int Range;
-        public int ReloadTime;
+        public float ReloadTime;
         public int SplashDamageRange;
         public GameObject Bullet;
         public DamageInfo[] DamageModifiers;
@@ -16,5 +16,6 @@ namespace LudumDare51.SO
         public float SpeedModifierForce;
         public float SpeedModifierDuration;
         public bool CleanAll;
+        public bool UseFire;
     }
 }
