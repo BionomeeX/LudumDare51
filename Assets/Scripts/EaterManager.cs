@@ -1,20 +1,21 @@
 ﻿using LudumDare51.Enemy;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using UnityEngine;
 
 namespace LudumDare51
 {
-    public class EaterManager
+    public class EaterManager : MonoBehaviour
     {
-        private static EaterManager _instance;
+        [SerializeField]
+        private TMP_Text _progText;
 
-        public static EaterManager Instance
+        public static EaterManager Instance { get; private set; }
+
+        private void Awake()
         {
-            get
-            {
-                _instance ??= new();
-                return _instance;
-            }
+            Instance = this;
         }
 
         private readonly Dictionary<Eater, int> _nbEaten = new();
@@ -34,6 +35,12 @@ namespace LudumDare51
                 var level = _nbEaten[e] - average;
                 e.UpdateSprite(level < 0 ? 0 : level);
             }
+            UpdateNachoverflowValue(-1);
+        }
+
+        public void UpdateNachoverflowValue(int modifier)
+        {
+            _progText.text = $"Nachoverflow: {GameObject.FindGameObjectsWithTag("Enemy").Length + modifier}%";
         }
     }
 }

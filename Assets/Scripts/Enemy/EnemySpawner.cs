@@ -35,6 +35,7 @@ namespace LudumDare51.Enemy
                 enemy.Info = targetInfo;
                 enemy.NextNode = _firstNode;
                 enemy.Offset = offset;
+                EaterManager.Instance.UpdateNachoverflowValue(0);
                 yield return new WaitForSeconds(Random.Range(.1f, .3f));
             }
         }
