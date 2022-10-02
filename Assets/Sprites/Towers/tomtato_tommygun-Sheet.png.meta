@@ -1,9 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: c9857de16a3cce646be20b476550ab25
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+=======
 guid: de430a6cdbf543245972e4bd4a090129
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
+>>>>>>> 1d52da721b8becbd999be35178bbc12a21f01d9d
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -34,7 +42,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
+    filterMode: 1
+=======
     filterMode: 0
+>>>>>>> 1d52da721b8becbd999be35178bbc12a21f01d9d
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,7 +55,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
+  spriteMode: 1
+=======
   spriteMode: 2
+>>>>>>> 1d52da721b8becbd999be35178bbc12a21f01d9d
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -65,6 +81,16 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
+<<<<<<< HEAD
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+=======
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -72,6 +98,7 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
+>>>>>>> 1d52da721b8becbd999be35178bbc12a21f01d9d
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,6 +129,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+=======
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -159,6 +191,7 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+>>>>>>> 1d52da721b8becbd999be35178bbc12a21f01d9d
     outline: []
     physicsShape: []
     bones: []
@@ -169,9 +202,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+<<<<<<< HEAD
+    nameFileIdTable: {}
+=======
     nameFileIdTable:
       tomtato_tommygun-Sheet_1: -1920995741
       tomtato_tommygun-Sheet_0: 1340606124
+>>>>>>> 1d52da721b8becbd999be35178bbc12a21f01d9d
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
