@@ -37,6 +37,9 @@ namespace LudumDare51.Tower
                     _fireChildPivot.SetActive(_enemiesInRange.Any());
                     if (_enemiesInRange.Any())
                     {
+                        Vector3 targetPos = _enemiesInRange[0].transform.position;
+                        Vector2 direction = targetPos - transform.position;
+                        transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
                         List<Collider2D> res = new();
                         Physics2D.OverlapCollider(_flameCollider, new ContactFilter2D(), res);
                         foreach (var c in res)
