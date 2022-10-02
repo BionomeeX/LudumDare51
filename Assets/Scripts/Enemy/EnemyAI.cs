@@ -92,6 +92,11 @@ namespace LudumDare51.Enemy
             {
                 _sr.color = Color.white;
                 _slowDuration = 0f;
+                if (_health < 0f)
+                {
+                    _health = 1;
+                    IsAlive = true;
+                }
             }
             if (_health <= 0)
             {
