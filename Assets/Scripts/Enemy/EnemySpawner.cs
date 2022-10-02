@@ -23,6 +23,12 @@ namespace LudumDare51.Enemy
         [SerializeField]
         private Node _firstNode;
 
+        [SerializeField]
+        private GameObject _itemPick, _itemPickContainer;
+
+        [SerializeField]
+        private GameObject _itemPrefab;
+
         private int[] _inventory;
 
         private void Awake()
@@ -43,6 +49,22 @@ namespace LudumDare51.Enemy
 
         private IEnumerator Spawn()
         {
+            _itemPick.SetActive(true);
+            for (int i = 0; i < _itemPickContainer.transform.childCount; i++) Destroy(_itemPickContainer.transform.GetChild(i).gameObject);
+
+            for (int i = 0; i < 3; i++)
+            {
+                var go = Instantiate(_itemPrefab, _itemPickContainer.transform);
+                var index = Random.Range(0, OnClick.Instance.Info.Length);
+                var randButton = OnClick.Instance.Info[index];
+                go.GetComponent<ButtonInit>().Init(() =>
+                {
+                    _inventory[index]++;
+                    _itemPick.SetActive(false);
+                    UpdateInventory();
+                }, randButton.Sprite);
+            }
+
             for (int i = 0; i < 10f; i++)
             {
                 var targetInfo = _enemyInfo[Random.Range(0, _enemyInfo.Length)];
