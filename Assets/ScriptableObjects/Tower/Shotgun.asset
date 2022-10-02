@@ -23,3 +23,5 @@ MonoBehaviour:
   SpeedModifierDuration: 0
   CleanAll: 0
   UseFire: 0
+  Spread: 1
+  NumberBullets: 5

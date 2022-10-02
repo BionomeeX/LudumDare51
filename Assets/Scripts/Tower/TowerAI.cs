@@ -62,13 +62,16 @@ namespace LudumDare51.Tower
                     _enemiesInRange.RemoveAll(x => !x.IsAlive);
                     if (_enemiesInRange.Any())
                     {
-                        var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
-                        bullet.Speed = 10;
-                        bullet.Target = _enemiesInRange[0].transform.position;
-                        bullet.Info = Info;
-                        Destroy(bullet.gameObject, 5f);
-                        StartCoroutine(Reload());
-                        _canShoot = false;
+                        for (var i = 0; i < Info.NumberBullets; i++)
+                        {
+                            var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
+                            bullet.Speed = 10;
+                            bullet.Target = _enemiesInRange[0].transform.position + new Vector3(Random.Range(-Info.Spread, Info.Spread), Random.Range(-Info.Spread, Info.Spread));
+                            bullet.Info = Info;
+                            Destroy(bullet.gameObject, 5f);
+                            StartCoroutine(Reload());
+                            _canShoot = false;
+                        }
                     }
                 }
             }
