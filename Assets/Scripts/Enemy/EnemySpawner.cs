@@ -18,10 +18,7 @@ namespace LudumDare51.Enemy
         private Button[] _buttonInfo;
 
         [SerializeField]
-        private Transform _spawnPoint;
-
-        [SerializeField]
-        private Node _firstNode;
+        private Node[] _spawnPoints;
 
         private int[] _inventory;
 
@@ -45,10 +42,11 @@ namespace LudumDare51.Enemy
                 var targetInfo = _enemyInfo[Random.Range(0, _enemyInfo.Length)];
                 var go = Instantiate(_enemyPrefab, transform);
                 var offset = (Vector2)(Random.insideUnitSphere * .25f);
-                go.transform.position = (Vector2)(_spawnPoint.position) + offset;
+                var spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+                go.transform.position = (Vector2)(spawnPoint.transform.position) + offset;
                 var enemy = go.GetComponent<EnemyAI>();
                 enemy.Info = targetInfo;
-                enemy.NextNode = _firstNode;
+                enemy.NextNode = spawnPoint.NextNode;
                 enemy.Offset = offset;
                 EaterManager.Instance.UpdateNachoverflowValue(0);
                 yield return new WaitForSeconds(Random.Range(.1f, .3f));
