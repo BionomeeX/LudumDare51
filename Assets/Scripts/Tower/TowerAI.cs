@@ -39,7 +39,8 @@ namespace LudumDare51.Tower
                     {
                         Vector3 targetPos = _enemiesInRange[0].transform.position;
                         Vector2 direction = targetPos - transform.position;
-                        transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+                        var euler = Quaternion.FromToRotation(Vector3.up, direction).eulerAngles;
+                        transform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + 90f);
                         List<Collider2D> res = new();
                         Physics2D.OverlapCollider(_flameCollider, new ContactFilter2D(), res);
                         foreach (var c in res)

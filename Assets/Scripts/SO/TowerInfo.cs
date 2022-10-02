@@ -6,7 +6,7 @@ namespace LudumDare51.SO
     [CreateAssetMenu(menuName = "ScriptableObject/TowerInfo", fileName = "TowerInfo")]
     public class TowerInfo : ScriptableObject
     {
-        public int Range;
+        public float Range;
         public float ReloadTime;
         public int SplashDamageRange;
         public GameObject Bullet;
