@@ -122,7 +122,7 @@ namespace LudumDare51.Enemy
                                     var offset = (Vector2)(Random.insideUnitSphere * .25f);
                                     go.transform.position = (Vector2)(spawner.transform.position) + offset;
                                     var enemy = go.GetComponent<EnemyAI>();
-                                    enemy.Info = group.info;
+                                    enemy.Info = info;
                                     enemy.NextNode = spawner.NextNode;
                                     enemy.Offset = offset;
                                     EaterManager.Instance.UpdateNachoverflowValue(0);
