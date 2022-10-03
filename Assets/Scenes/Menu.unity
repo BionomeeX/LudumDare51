@@ -2701,26 +2701,28 @@ MonoBehaviour:
 
     Francois Carre
 
+    Manon Graham Fonseca
+
 
     {creditsAudio}:
 
-    Nicolas Roche
+    Nicolas
+    Roche
 
 
     {creditsProgramming}:
 
-    Chad
-    Estoup--Streiff
+    Chad Estoup--Streiff
 
     Christian Chaux
 
-    Clement Carre
+    Clement
+    Carre
 
 
     {creditsSounds}
 
-    Chad
-    Estoup--Streiff'
+    Chad Estoup--Streiff'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
   m_sharedMaterial: {fileID: 3377307803345958292, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
