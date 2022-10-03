@@ -1,9 +1,11 @@
+using Assets.Scripts;
 using LudumDare51.Enemy;
 using LudumDare51.SO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace LudumDare51.Tower
 {
@@ -65,6 +67,8 @@ namespace LudumDare51.Tower
                     transform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + 90f);
                     if (_canShoot)
                     {
+                        if (Info.shootSound != null)
+                            SFXManager.Instance.PlaySound(Info.shootSound);
                         List<Collider2D> res = new();
                         Physics2D.OverlapCollider(_flameCollider, new ContactFilter2D(), res);
                         foreach (var c in res)
@@ -83,6 +87,8 @@ namespace LudumDare51.Tower
             {
                 if (_canShoot && target != null)
                 {
+                    if (Info.shootSound != null)
+                        SFXManager.Instance.PlaySound(Info.shootSound);
                     Vector3 targetPos = target.transform.position;
                     Vector2 direction = targetPos - transform.position;
                     var euler = Quaternion.FromToRotation(Vector3.up, direction).eulerAngles;
