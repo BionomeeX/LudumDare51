@@ -1,6 +1,7 @@
 ﻿using LudumDare51.Translation;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LudumDare51
 {
@@ -11,6 +12,11 @@ namespace LudumDare51
         private void Awake()
         {
             _finalText.text = Translate.Instance.Tr("score") + ": " + DataKeeper.Instance.FinalScore;
+        }
+
+        public void BackToMenu()
+        {
+            SceneManager.LoadScene("Menu");
         }
     }
 }
