@@ -866,6 +866,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520938042}
   m_CullTransparentMesh: 1
+--- !u!1 &552812418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 552812419}
+  m_Layer: 5
+  m_Name: NachosSpe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &552812419
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552812418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 833955928}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &655567278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,6 +1230,7 @@ RectTransform:
   m_Children:
   - {fileID: 1797926715}
   - {fileID: 1470000348}
+  - {fileID: 552812419}
   - {fileID: 518150546}
   - {fileID: 1150145203}
   - {fileID: 2028029018}
@@ -1221,6 +1258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 1797926715}
+  _containerSpe: {fileID: 552812419}
   _prefab: {fileID: 880504704387909570, guid: ff4c46447ce0e024586d45bda48e29c9, type: 3}
   _prefabSpe: {fileID: 880504704387909570, guid: 22a78ac8c87c8fc41b5f3383a1bc2ab7, type: 3}
 --- !u!114 &833955930
