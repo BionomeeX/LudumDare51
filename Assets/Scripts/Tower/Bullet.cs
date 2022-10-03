@@ -18,6 +18,10 @@ namespace LudumDare51.Tower
             var angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             GetComponent<Rigidbody2D>().velocity = transform.right * Speed;
+            if (Info.TargetDeadPeople)
+            {
+                gameObject.layer = LayerMask.NameToLayer("BulletSpe");
+            }
         }
 
         private void Update()
