@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb5680213487304fbab20ce71a4977b, type: 3}
   m_Name: Onigiri
   m_EditorClassIdentifier: 
-  Speed: 50
-  BaseHealth: 350
+  Speed: 30
+  BaseHealth: 1000
   Type: 0
   SpriteAlive: {fileID: 380180118, guid: 212d3ae0b81fb15449b4431cd7f1348f, type: 3}
   SpriteDead: {fileID: 1978882363, guid: 212d3ae0b81fb15449b4431cd7f1348f, type: 3}

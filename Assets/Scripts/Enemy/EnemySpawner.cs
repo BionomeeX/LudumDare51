@@ -31,13 +31,6 @@ namespace LudumDare51.Enemy
         [SerializeField]
         private TMP_Text _textTimer;
 
-        [Header("Enemies")]
-        [SerializeField]
-        private EnemyInfo _normalEnemy;
-
-        [SerializeField]
-        private EnemyInfo _onigiri, _illuminati;
-
         private int round;
         private int _nbDelete = 0;
         private int _nbHat = 0;
@@ -105,29 +98,25 @@ namespace LudumDare51.Enemy
                     {
                         foreach (var group in salve.groups)
                         {
-                            for (int i = 0; i < group.quantity + (round - 1); i++)
+                            for (int i = 0; i < (int)(group.quantity * (1 + round/6)); i++)
                             {
-                                var info = _normalEnemy;
-
-                                var dice = Random.Range(0, 100);
-                                if (round > 5)
-                                {
-                                    if (dice < 5) info = _onigiri;
-                                    else if (dice < 10) info = _illuminati;
-                                }
-
                                 if (nbSpawned < 50) // If somehow the player reach that, let's not just kill him right away
                                 {
-                                    var go = Instantiate(_enemyPrefab, transform);
-                                    var offset = (Vector2)(Random.insideUnitSphere * .25f);
-                                    go.transform.position = (Vector2)(spawner.transform.position) + offset;
-                                    var enemy = go.GetComponent<EnemyAI>();
-                                    enemy.Info = info;
-                                    enemy.NextNode = spawner.NextNode;
-                                    enemy.Offset = offset;
-                                    EaterManager.Instance.UpdateNachoverflowValue(0);
-                                    nbSpawned++;
-                                    yield return new WaitForSeconds(Random.Range(.1f, .3f));
+
+                                    var dice = Random.Range(0, 100);
+                                    if (dice < 50)
+                                    {
+                                        var go = Instantiate(_enemyPrefab, transform);
+                                        var offset = (Vector2)(Random.insideUnitSphere * .25f);
+                                        go.transform.position = (Vector2)(spawner.transform.position) + offset;
+                                        var enemy = go.GetComponent<EnemyAI>();
+                                        enemy.Info = group.info;
+                                        enemy.NextNode = spawner.NextNode;
+                                        enemy.Offset = offset;
+                                        EaterManager.Instance.UpdateNachoverflowValue(0);
+                                        nbSpawned++;
+                                        yield return new WaitForSeconds(Random.Range(.1f, .3f));
+                                    }
                                 }
                             }
                         }
