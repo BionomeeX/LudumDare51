@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   Range: 3
-  ReloadTime: 10
+  ReloadTime: 3
   SplashDamageRange: -1
   Bullet: {fileID: 2643107716775651414, guid: 3f5bfad10da39dc4099f853de24764a8, type: 3}
   DamageModifiers: []
   Sprite: {fileID: -1879219236, guid: e6b037661e3fe0e468d0f721c5a74c94, type: 3}
   WeaponSprite: {fileID: -1500289484, guid: e6b037661e3fe0e468d0f721c5a74c94, type: 3}
   Hat: {fileID: -1427644952, guid: e6b037661e3fe0e468d0f721c5a74c94, type: 3}
-  Damage: 20
+  Damage: 600
   SpeedModifierForce: 0
   SpeedModifierDuration: 0
   CleanAll: 0
@@ -30,3 +30,5 @@ MonoBehaviour:
   TargetDeadPeople: 0
   MinRange: 1
   BulletSpeed: 20
+  shootSound: {fileID: 8300000, guid: d038cfa90d76c2f4a8ddf6bd580598c0, type: 3}
+  touchSound: {fileID: 0}

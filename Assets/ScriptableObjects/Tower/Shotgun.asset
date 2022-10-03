@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   Range: 1
-  ReloadTime: 2
+  ReloadTime: 0.7
   SplashDamageRange: -1
   Bullet: {fileID: 2643107716775651414, guid: 3f5bfad10da39dc4099f853de24764a8, type: 3}
   DamageModifiers: []
   Sprite: {fileID: 433337218, guid: 828fcc52b69aba941901656eccfde8f6, type: 3}
   WeaponSprite: {fileID: -262782793, guid: 828fcc52b69aba941901656eccfde8f6, type: 3}
   Hat: {fileID: 40911760, guid: 828fcc52b69aba941901656eccfde8f6, type: 3}
-  Damage: 4
+  Damage: 20
   SpeedModifierForce: 0
   SpeedModifierDuration: 0
   CleanAll: 0
@@ -29,3 +29,6 @@ MonoBehaviour:
   NumberBullets: 5
   TargetDeadPeople: 0
   MinRange: 0
+  BulletSpeed: 6
+  shootSound: {fileID: 8300000, guid: cf540c7b14e290145b4e9b23aea336e7, type: 3}
+  touchSound: {fileID: 0}

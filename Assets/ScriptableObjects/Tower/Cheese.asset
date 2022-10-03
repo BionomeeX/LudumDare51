@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cheese
   m_EditorClassIdentifier: 
   Range: 1
-  ReloadTime: 2
+  ReloadTime: 0.4
   SplashDamageRange: -1
   Bullet: {fileID: 2643107716775651414, guid: d808703acffb33840b926cfd89de24b4, type: 3}
   DamageModifiers: []
@@ -29,3 +29,6 @@ MonoBehaviour:
   NumberBullets: 1
   TargetDeadPeople: 0
   MinRange: 0
+  BulletSpeed: 10
+  shootSound: {fileID: 8300000, guid: 309cd5a753b39f84aa91da255ab5ee5b, type: 3}
+  touchSound: {fileID: 0}

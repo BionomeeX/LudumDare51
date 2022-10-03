@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: ThompsonSubmachineGun
   m_EditorClassIdentifier: 
   Range: 1
-  ReloadTime: 0.5
+  ReloadTime: 0.2
   SplashDamageRange: -1
   Bullet: {fileID: 2643107716775651414, guid: 3f5bfad10da39dc4099f853de24764a8, type: 3}
   DamageModifiers: []
   Sprite: {fileID: 589158255, guid: c9857de16a3cce646be20b476550ab25, type: 3}
   WeaponSprite: {fileID: 1913555322, guid: c9857de16a3cce646be20b476550ab25, type: 3}
   Hat: {fileID: 1851452181, guid: c9857de16a3cce646be20b476550ab25, type: 3}
-  Damage: 6
+  Damage: 18
   SpeedModifierForce: 0
   SpeedModifierDuration: 0
   CleanAll: 0
@@ -29,3 +29,6 @@ MonoBehaviour:
   NumberBullets: 1
   TargetDeadPeople: 0
   MinRange: 0
+  BulletSpeed: 10
+  shootSound: {fileID: 8300000, guid: 447fbefb474a7324d8c077eb6f0e60c2, type: 3}
+  touchSound: {fileID: 0}

@@ -20,7 +20,7 @@ MonoBehaviour:
   Sprite: {fileID: -1215553443, guid: 22fb9079e0bc83644862f032349bbe40, type: 3}
   WeaponSprite: {fileID: 925625665, guid: 22fb9079e0bc83644862f032349bbe40, type: 3}
   Hat: {fileID: -634151156, guid: 22fb9079e0bc83644862f032349bbe40, type: 3}
-  Damage: 1
+  Damage: 5
   SpeedModifierForce: 0
   SpeedModifierDuration: 0
   CleanAll: 0
@@ -29,3 +29,6 @@ MonoBehaviour:
   NumberBullets: 1
   TargetDeadPeople: 0
   MinRange: 0
+  BulletSpeed: 10
+  shootSound: {fileID: 8300000, guid: d272987f056308041a7f156125eea059, type: 3}
+  touchSound: {fileID: 0}
