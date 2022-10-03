@@ -122,7 +122,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 64
         width: 36
         height: 32
       alignment: 0
@@ -142,8 +142,8 @@ TextureImporter:
       name: avocado_bazooka0-Sheet_1
       rect:
         serializedVersion: 2
-        x: 36
-        y: 0
+        x: 0
+        y: 32
         width: 36
         height: 32
       alignment: 0
@@ -155,6 +155,27 @@ TextureImporter:
       bones: []
       spriteID: 5bf8fd6e1d3d4ae46a4551b298bb3548
       internalID: -1866510585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avocado_bazooka0-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 36
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0f885cc714927e429c920f621091fb3
+      internalID: -1319191376
       vertices: []
       indices: 
       edges: []
@@ -172,6 +193,7 @@ TextureImporter:
     nameFileIdTable:
       avocado_bazooka0-Sheet_0: 1666605045
       avocado_bazooka0-Sheet_1: -1866510585
+      avocado_bazooka0-Sheet_2: -1319191376
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

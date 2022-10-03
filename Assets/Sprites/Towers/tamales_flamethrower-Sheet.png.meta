@@ -68,7 +68,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 64
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -122,7 +122,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -142,8 +142,8 @@ TextureImporter:
       name: tamales_flamethrower-Sheet_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -155,6 +155,27 @@ TextureImporter:
       bones: []
       spriteID: 195d3572b673e8c4da7e4b046bb43663
       internalID: 925625665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tamales_flamethrower-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ff57ccb6cde44149aa2ddfcf2abd62e
+      internalID: -634151156
       vertices: []
       indices: 
       edges: []
@@ -171,6 +192,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       tamales_flamethrower-Sheet_1: 925625665
+      tamales_flamethrower-Sheet_2: -634151156
       tamales_flamethrower-Sheet_0: -1215553443
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

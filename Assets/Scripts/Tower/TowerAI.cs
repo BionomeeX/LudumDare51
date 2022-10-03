@@ -10,7 +10,7 @@ namespace LudumDare51.Tower
     public class TowerAI : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _fireChildPivot;
+        private GameObject _weapon, _fireWeapon;
 
         [SerializeField]
         private Collider2D _flameCollider;
@@ -21,10 +21,14 @@ namespace LudumDare51.Tower
 
         private bool _canShoot = true;
 
+        [SerializeField]
+        private SpriteRenderer _weaponSR, _hatSR;
+
         private void Start()
         {
             GetComponent<CircleCollider2D>().radius = Info.Range;
             GetComponent<SpriteRenderer>().sprite = Info.Sprite;
+            _weaponSR.sprite = Info.WeaponSprite;
         }
 
         private void Update()
@@ -33,7 +37,7 @@ namespace LudumDare51.Tower
             var target = _enemiesInRange.FirstOrDefault(x => (Info.TargetDeadPeople || x.IsAlive) && (Info.MinRange <= 0f || Vector2.Distance(x.transform.position, transform.position) > Info.MinRange));
             if (Info.UseFire)
             {
-                _fireChildPivot.SetActive(target != null);
+                _fireWeapon.SetActive(target != null);
                 if (target != null)
                 {
                     Vector3 targetPos = target.transform.position;

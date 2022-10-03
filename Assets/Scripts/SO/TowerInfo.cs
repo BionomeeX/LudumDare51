@@ -12,6 +12,8 @@ namespace LudumDare51.SO
         public GameObject Bullet;
         public DamageInfo[] DamageModifiers;
         public Sprite Sprite;
+        public Sprite WeaponSprite;
+        public Sprite Hat;
         public int Damage;
         public float SpeedModifierForce;
         public float SpeedModifierDuration;

@@ -18,6 +18,8 @@ MonoBehaviour:
   Bullet: {fileID: 2643107716775651414, guid: eff995cd0d1f98e439c549ee2e5b09e4, type: 3}
   DamageModifiers: []
   Sprite: {fileID: 1870124531, guid: 0b6434af13963b649954d278d5eb7b50, type: 3}
+  WeaponSprite: {fileID: 947718804, guid: 0b6434af13963b649954d278d5eb7b50, type: 3}
+  Hat: {fileID: 82140160, guid: 0b6434af13963b649954d278d5eb7b50, type: 3}
   Damage: 0
   SpeedModifierForce: 0
   SpeedModifierDuration: 0
@@ -26,3 +28,4 @@ MonoBehaviour:
   Spread: 0
   NumberBullets: 1
   TargetDeadPeople: 1
+  MinRange: 0
