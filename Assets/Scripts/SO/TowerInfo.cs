@@ -23,5 +23,6 @@ namespace LudumDare51.SO
         public int NumberBullets = 1;
         public bool TargetDeadPeople;
         public float MinRange;
+        public float BulletSpeed = 10f;
     }
 }

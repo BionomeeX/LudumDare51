@@ -29,3 +29,4 @@ MonoBehaviour:
   NumberBullets: 1
   TargetDeadPeople: 0
   MinRange: 2.5
+  BulletSpeed: 20
