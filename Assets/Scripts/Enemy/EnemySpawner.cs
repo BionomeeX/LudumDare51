@@ -1,6 +1,7 @@
 ﻿using LudumDare51.SO;
 using System.Collections;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -106,6 +107,7 @@ namespace LudumDare51.Enemy
             for (int i = 0; i < _inventory.Length; i++)
             {
                 _buttonInfo[i].gameObject.SetActive(_inventory[i] > 0);
+                _buttonInfo[i].GetComponentInChildren<TMP_Text>().text = $"{_inventory[i]}";
             }
         }
     }
