@@ -1,8 +1,6 @@
-﻿using LudumDare51.SO;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,9 +22,14 @@ namespace LudumDare51.Enemy
         [SerializeField]
         private GameObject _itemPrefab;
 
+        [SerializeField]
+        private Sprite _trashIcon, _hatIcon;
+
         private int[] _inventory;
 
         private int round;
+        private int _nbDelete = 0;
+        private int _nbHat = 0;
 
         private void Awake()
         {
@@ -39,7 +42,6 @@ namespace LudumDare51.Enemy
             StartCoroutine(NextWave());
             _inventory = new int[_buttonInfo.Length];
             _inventory[0] = 3;
-            _inventory[4] = 3;
             UpdateInventory();
         }
 
@@ -51,14 +53,35 @@ namespace LudumDare51.Enemy
             for (int i = 0; i < 3; i++)
             {
                 var go = Instantiate(_itemPrefab, _itemPickContainer.transform);
-                var index = Random.Range(0, OnClick.Instance.Info.Length);
-                var randButton = OnClick.Instance.Info[index];
-                go.GetComponent<ButtonInit>().Init(() =>
+                var index = Random.Range(-2, OnClick.Instance.Info.Length);
+                if (index >= 0)
                 {
-                    _inventory[index]++;
-                    _itemPick.SetActive(false);
-                    UpdateInventory();
-                }, randButton.Sprite, randButton.WeaponSprite);
+                    var randButton = OnClick.Instance.Info[index];
+                    go.GetComponent<ButtonInit>().Init(() =>
+                    {
+                        _inventory[index]++;
+                        _itemPick.SetActive(false);
+                        UpdateInventory();
+                    }, randButton.Sprite, randButton.WeaponSprite);
+                }
+                else if (index == -1)
+                {
+                    go.GetComponent<ButtonInit>().Init(() =>
+                    {
+                        _nbDelete++;
+                        _itemPick.SetActive(false);
+                        UpdateInventory();
+                    }, _trashIcon, null);
+                }
+                else if (index == -2)
+                {
+                    go.GetComponent<ButtonInit>().Init(() =>
+                    {
+                        _nbHat++;
+                        _itemPick.SetActive(false);
+                        UpdateInventory();
+                    }, _hatIcon, null);
+                }
             }
 
             foreach (var spawner in GameObject.FindGameObjectsWithTag("Spawner").Select(x => x.GetComponent<Node>()))
@@ -109,6 +132,16 @@ namespace LudumDare51.Enemy
             {
                 _buttonInfo[i].gameObject.SetActive(_inventory[i] > 0);
                 _buttonInfo[i].GetComponentInChildren<TMP_Text>().text = $"{_inventory[i]}";
+            }
+            if (_nbDelete > 0)
+            {
+                _buttonInfo[_buttonInfo.Length].gameObject.SetActive(_inventory[_buttonInfo.Length] > 0);
+                _buttonInfo[_buttonInfo.Length].GetComponentInChildren<TMP_Text>().text = $"{_inventory[_buttonInfo.Length]}";
+            }
+            if (_nbHat > 0)
+            {
+                _buttonInfo[_buttonInfo.Length + 1].gameObject.SetActive(_inventory[_buttonInfo.Length + 1] > 0);
+                _buttonInfo[_buttonInfo.Length + 1].GetComponentInChildren<TMP_Text>().text = $"{_inventory[_buttonInfo.Length + 1]}";
             }
         }
     }

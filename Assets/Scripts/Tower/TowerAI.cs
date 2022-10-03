@@ -15,7 +15,7 @@ namespace LudumDare51.Tower
         [SerializeField]
         private Collider2D _flameCollider;
 
-        public TowerInfo Info { set; private get; }
+        public TowerInfo Info { set; get; }
 
         private List<EnemyAI> _enemiesInRange = new();
 
@@ -24,11 +24,24 @@ namespace LudumDare51.Tower
         [SerializeField]
         private SpriteRenderer _weaponSR, _hatSR;
 
+        public bool _hasHat = false;
+
+        public bool HasHat => _hasHat;
+
+        public void SetHat()
+        {
+            _hatSR.enabled = true;
+            _hasHat = true;
+            GetComponent<CircleCollider2D>().radius *= 1.5f;
+        }
+
         private void Start()
         {
             GetComponent<CircleCollider2D>().radius = Info.Range;
             GetComponent<SpriteRenderer>().sprite = Info.Sprite;
             _weaponSR.sprite = Info.WeaponSprite;
+            _hatSR.sprite = Info.Hat;
+            _hatSR.enabled = false;
         }
 
         private void Update()
@@ -52,7 +65,7 @@ namespace LudumDare51.Tower
                         {
                             if (c.CompareTag("Enemy"))
                             {
-                                c.GetComponent<EnemyAI>().TakeDamage(Info);
+                                c.GetComponent<EnemyAI>().TakeDamage(Info, _hasHat);
                             }
                         }
                         StartCoroutine(Reload());
@@ -74,6 +87,7 @@ namespace LudumDare51.Tower
                         bullet.Speed = 10;
                         bullet.Target = target.transform.position + new Vector3(Random.Range(-Info.Spread, Info.Spread), Random.Range(-Info.Spread, Info.Spread));
                         bullet.Info = Info;
+                        bullet.HasHat = _hasHat;
                         Destroy(bullet.gameObject, 5f);
                         StartCoroutine(Reload());
                         _canShoot = false;

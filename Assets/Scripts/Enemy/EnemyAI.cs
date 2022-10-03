@@ -81,14 +81,16 @@ namespace LudumDare51.Enemy
             }
         }
 
-        public void TakeDamage(TowerInfo info)
+        public void TakeDamage(TowerInfo info, bool hasHat)
         {
-            _health -= info.Damage;
+            var m = hasHat ? 1.5f : .5f;
+
+            _health -= Mathf.CeilToInt(info.Damage * m);
             if (info.SpeedModifierDuration > 0f)
             {
                 _sr.color = Color.yellow;
-                if (info.SpeedModifierDuration > _slowDuration) _slowDuration = info.SpeedModifierDuration;
-                if (info.SpeedModifierForce > _slowForce) _slowForce = info.SpeedModifierForce;
+                if (info.SpeedModifierDuration * m > _slowDuration) _slowDuration = info.SpeedModifierDuration * m;
+                if (info.SpeedModifierForce * m > _slowForce) _slowForce = info.SpeedModifierForce * m;
             }
             if (info.CleanAll)
             {
@@ -96,7 +98,7 @@ namespace LudumDare51.Enemy
                 _slowDuration = 0f;
                 if (!IsAlive)
                 {
-                    _health = 1;
+                    _health = Mathf.FloorToInt(Info.BaseHealth / 2f * m);
                     IsAlive = true;
                     _sr.sprite = _baseSprite;
                     gameObject.layer = LayerMask.NameToLayer("Enemy");

@@ -87,25 +87,6 @@ namespace LudumDare51
             return _towers.FirstOrDefault(x => TowerExistOnPos(x, posOnTheWorld));
         }
 
-        private void ClickOnEmptyCase(Vector3 posOnTheWorld) {
-            if (CurrentTowerInfo != null)
-            {
-                var newtower = Instantiate(
-                    _tower,
-                    posOnTheWorld,
-                    Quaternion.identity
-                );
-
-                newtower.GetComponent<TowerAI>().Info = CurrentTowerInfo;
-                _towers.Add(newtower);
-            }
-        }
-
-        private void ClickOnATower(GameObject tower, Vector3 posOnTheWorld) {
-            _radialMenu.MyPosOnTheWorld = posOnTheWorld;
-            _radialMenu.gameObject.SetActive(true);
-        }
-
 
         public void AddTower(Vector3 position, TurretSpot spot)
         {
@@ -128,53 +109,59 @@ namespace LudumDare51
 
         private void Update()
         {
-            if (CurrentTowerInfo != null)
+            var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.MaxValue, _layerTower);
+            if (hit.collider != null && hit.collider.CompareTag("TowerSlot"))
             {
-                var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.MaxValue, _layerTower);
-                if (hit.collider != null && hit.collider.CompareTag("TowerSlot"))
+                var slot = hit.collider.GetComponent<TurretSpot>();
+                TowerInfo target;
+                float m = 1f;
+                if (slot == null && CurrentTowerInfo != null) target = CurrentTowerInfo;
+                else if (slot != null && CurrentTowerInfo == null)
                 {
-                    _lr.enabled = true;
+                    target = slot.Turret.Info;
+                    if (slot.Turret.HasHat)
+                    {
+                        m = 1.5f;
+                    }
+                }
+                else return;
 
-                    // https://forum.unity.com/threads/drawing-simple-pixel-perfect-shapes-circles-lines-etc-like-in-gamemaker.479181/
-                    var thetaScale = 0.01f;
-                    float sizeValue = (2.0f * Mathf.PI) / thetaScale;
-                    var size = (int)sizeValue;
-                    size++;
-                    _lr.positionCount = size;
-                    var p = hit.collider.transform.position;
+                _lr.enabled = true;
 
-                    var r = CurrentTowerInfo.Range * 2f;
-                    Vector3 pos;
-                    float theta = 0f;
+                // https://forum.unity.com/threads/drawing-simple-pixel-perfect-shapes-circles-lines-etc-like-in-gamemaker.479181/
+                var thetaScale = 0.01f;
+                float sizeValue = (2.0f * Mathf.PI) / thetaScale;
+                var size = (int)sizeValue;
+                size++;
+                _lr.positionCount = size;
+                var p = hit.collider.transform.position;
+
+                var r = target.Range * m * 2f;
+                Vector3 pos;
+                float theta = 0f;
+                for (int i = 0; i < size; i++)
+                {
+                    theta += (2.0f * Mathf.PI * thetaScale);
+                    float x = r * Mathf.Cos(theta) + p.x;
+                    float y = r * Mathf.Sin(theta) + p.y;
+                    pos = new Vector3(x, y, 0);
+                    _lr.SetPosition(i, pos);
+                }
+
+                _closeLr.enabled = target.MinRange > 0f;
+                if (target.MinRange > 0f)
+                {
+                    _closeLr.positionCount = size;
+                    var cr = target.MinRange * 2f;
+                    theta = 0f;
                     for (int i = 0; i < size; i++)
                     {
                         theta += (2.0f * Mathf.PI * thetaScale);
-                        float x = r * Mathf.Cos(theta) + p.x;
-                        float y = r * Mathf.Sin(theta) + p.y;
+                        float x = cr * Mathf.Cos(theta) + p.x;
+                        float y = cr * Mathf.Sin(theta) + p.y;
                         pos = new Vector3(x, y, 0);
-                        _lr.SetPosition(i, pos);
+                        _closeLr.SetPosition(i, pos);
                     }
-
-                    _closeLr.enabled = CurrentTowerInfo.MinRange > 0f;
-                    if (CurrentTowerInfo.MinRange > 0f)
-                    {
-                        _closeLr.positionCount = size;
-                        var cr = CurrentTowerInfo.MinRange * 2f;
-                        theta = 0f;
-                        for (int i = 0; i < size; i++)
-                        {
-                            theta += (2.0f * Mathf.PI * thetaScale);
-                            float x = cr * Mathf.Cos(theta) + p.x;
-                            float y = cr * Mathf.Sin(theta) + p.y;
-                            pos = new Vector3(x, y, 0);
-                            _closeLr.SetPosition(i, pos);
-                        }
-                    }
-                }
-                else
-                {
-                    _lr.enabled = false;
-                    _closeLr.enabled = false;
                 }
             }
             else
@@ -189,9 +176,27 @@ namespace LudumDare51
             if (value.performed)
             {
                 var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.MaxValue, _layerTower);
-                if (hit.collider != null && hit.collider.CompareTag("TowerSlot") && hit.collider.GetComponent<TurretSpot>().Turret == null)
+                if (hit.collider != null && hit.collider.CompareTag("TowerSlot"))
                 {
-                    AddTower(hit.collider.transform.position, hit.collider.GetComponent<TurretSpot>());
+                    var spot = hit.collider.GetComponent<TurretSpot>();
+                    if (spot.Turret == null)
+                    {
+                        AddTower(hit.collider.transform.position, hit.collider.GetComponent<TurretSpot>());
+                    }
+                    else if (CurrentTowerInfo == null)
+                    {
+                        if (_currSelection == CurrSelection.Trash)
+                        {
+                            Destroy(spot.Turret.gameObject);
+                            spot.Turret = null;
+                            _currSelection = CurrSelection.None;
+                        }
+                        else if (_currSelection == CurrSelection.Hat && !spot.Turret.HasHat)
+                        {
+                            spot.Turret.SetHat();
+                            _currSelection = CurrSelection.None;
+                        }
+                    }
                 }
             }
         }
@@ -200,5 +205,25 @@ namespace LudumDare51
         {
             CurrentTowerInfo = _info[infoIndex];
         }
+
+        public void SetSelectionTrash()
+        {
+            CurrentTowerInfo = null;
+            _currSelection = CurrSelection.Trash;
+        }
+
+        public void SetSelectionHat()
+        {
+            CurrentTowerInfo = null;
+            _currSelection = CurrSelection.Hat;
+        }
+
+        private enum CurrSelection
+        {
+            None,
+            Trash,
+            Hat
+        }
+        private CurrSelection _currSelection;
     }
 }

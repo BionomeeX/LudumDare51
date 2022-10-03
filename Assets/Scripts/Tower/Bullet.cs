@@ -9,6 +9,7 @@ namespace LudumDare51.Tower
         public float Speed { set; private get; }
         public Vector2 Target { set; private get; }
         public TowerInfo Info { set; private get; }
+        public bool HasHat { set; private get; }
 
         private void Start()
         {
@@ -35,7 +36,7 @@ namespace LudumDare51.Tower
             {
                 if (Info.SplashDamageRange == -1)
                 {
-                    collision.collider.GetComponent<EnemyAI>().TakeDamage(Info);
+                    collision.collider.GetComponent<EnemyAI>().TakeDamage(Info, HasHat);
                 }
                 else
                 {
@@ -44,7 +45,7 @@ namespace LudumDare51.Tower
                     {
                         if (coll.CompareTag("Enemy"))
                         {
-                            coll.GetComponent<EnemyAI>().TakeDamage(Info);
+                            coll.GetComponent<EnemyAI>().TakeDamage(Info, HasHat);
                         }
                     }
                     OnClick.Instance.AddExplosion(collision.contacts[0].point);
