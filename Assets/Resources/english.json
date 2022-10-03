@@ -17,5 +17,17 @@
     "help8": "The best you handle that, the faster your score will grow!",
 
     "score": "Score",
-    "quickInstructions": "Quick!\nGrab something!"
+    "quickInstructions": "Quick!\nGrab something!",
+
+    "helpTomato": "Shoot fast, moderate damage, cool sunglasses",
+    "helpAvocado": "Splash damage, shoot slowly, best eaten when still a bit firm",
+    "helpCheese": "Slow down enemies, best eaten in a fondue",
+    "helpPepper": "Group damage, small range, hotter than expected",
+    "helpOnion": "Remove guacamol, nobody would eat a chip without guacamol",
+    "helpGarlic": "Shoot far, high damage, doesn't smell THAT bad",
+    "helpLemon": "Shoot many bullet in a lot of directions",
+    "helpBeans": "Shoot far, splash damage, all of them are called Joe",
+    "helpHat": "Update a turret, also make it twice as cool",
+    "helpTrash": "Discard a turret, please don't waste too much food"
+
 }
