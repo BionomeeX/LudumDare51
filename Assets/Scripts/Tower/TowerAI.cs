@@ -48,6 +48,8 @@ namespace LudumDare51.Tower
             _blushSR.enabled = false;
         }
 
+        public void ToggleBlush(bool value) => _blushSR.enabled = value;
+
         private void Update()
         {
             _enemiesInRange.RemoveAll(x => x.gameObject == null);

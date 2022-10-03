@@ -107,6 +107,7 @@ namespace LudumDare51
             }
         }
 
+        private TowerAI _lastHover;
         private void Update()
         {
             var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.MaxValue, _layerTower);
@@ -115,7 +116,15 @@ namespace LudumDare51
                 var slot = hit.collider.GetComponent<TurretSpot>();
                 TowerInfo target;
                 float m = 1f;
-                if (slot.Turret == null && CurrentTowerInfo != null) target = CurrentTowerInfo;
+                if (slot.Turret == null && CurrentTowerInfo != null)
+                {
+                    target = CurrentTowerInfo;
+                    if (_lastHover != null)
+                    {
+                        _lastHover.ToggleBlush(false);
+                        _lastHover = null;
+                    }
+                }
                 else if (slot.Turret != null && CurrentTowerInfo == null)
                 {
                     target = slot.Turret.Info;
@@ -123,8 +132,27 @@ namespace LudumDare51
                     {
                         m = 1.5f;
                     }
+                    if (_lastHover != slot.Turret)
+                    {
+                        if (_lastHover != null)
+                        {
+                            _lastHover.ToggleBlush(false);
+                        }
+                        _lastHover = slot.Turret;
+                        _lastHover.ToggleBlush(true);
+                    }
                 }
-                else return;
+                else
+                {
+                    if (_lastHover != null)
+                    {
+                        _lastHover.ToggleBlush(false);
+                        _lastHover = null;
+                    }
+                    _lr.enabled = false;
+                    _closeLr.enabled = false;
+                    return;
+                }
 
                 _lr.enabled = true;
 
@@ -168,6 +196,11 @@ namespace LudumDare51
             {
                 _lr.enabled = false;
                 _closeLr.enabled = false;
+                if (_lastHover != null)
+                {
+                    _lastHover.ToggleBlush(false);
+                    _lastHover = null;
+                }
             }
         }
 
