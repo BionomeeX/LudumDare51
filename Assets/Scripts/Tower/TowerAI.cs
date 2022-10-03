@@ -60,6 +60,10 @@ namespace LudumDare51.Tower
             {
                 if (_canShoot && target != null)
                 {
+                    Vector3 targetPos = target.transform.position;
+                    Vector2 direction = targetPos - transform.position;
+                    var euler = Quaternion.FromToRotation(Vector3.up, direction).eulerAngles;
+                    transform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + 90f);
                     for (var i = 0; i < Info.NumberBullets; i++)
                     {
                         var bullet = Instantiate(Info.Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
