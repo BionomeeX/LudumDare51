@@ -32,7 +32,10 @@ namespace LudumDare51.Tower
         {
             _hatSR.enabled = true;
             _hasHat = true;
-            GetComponent<CircleCollider2D>().radius *= 1.5f;
+            if (!Info.UseFire) // Fire has fixed range
+            {
+                GetComponent<CircleCollider2D>().radius *= 1.5f;
+            }
         }
 
         private void Start()
