@@ -1,5 +1,6 @@
 ﻿using LudumDare51.SO;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -49,6 +50,16 @@ namespace LudumDare51.Enemy
             UpdateInventory();
         }
 
+        class IntWrapper // WTF C#?
+        {
+            public IntWrapper(int a)
+            {
+                Int = a;
+            }
+
+            public int Int;
+        }
+
         private IEnumerator Spawn()
         {
             _itemPick.SetActive(true);
@@ -90,34 +101,39 @@ namespace LudumDare51.Enemy
 
             var nbSpawned = 0;
 
-            foreach (var spawner in GameObject.FindGameObjectsWithTag("Spawner").Select(x => x.GetComponent<Node>()))
-            {
-                foreach (var salve in spawner.Salves.OrderBy(x => Random.Range(0f, 1f))) // Might as well randomize the first one
-                {
-                    if ((salve.start_round < 1 || salve.start_round <= round) && (salve.end_round < 1 || salve.end_round >= round))
-                    {
-                        foreach (var group in salve.groups)
-                        {
-                            for (int i = 0; i < (int)(group.quantity * (1 + round/6)); i++)
-                            {
-                                if (nbSpawned < 50) // If somehow the player reach that, let's not just kill him right away
-                                {
+            Dictionary<Node, Dictionary<EnemyInfo, IntWrapper>> _spawnRemainings
+                = GameObject.FindGameObjectsWithTag("Spawner").Select(x => x.GetComponent<Node>()).ToDictionary(x => x,
+                x => x.Salves.Where(salve => (salve.start_round < 1 || salve.start_round <= round) && (salve.end_round < 1 || salve.end_round >= round))
+                .Select(y => y.groups.Select(z => (z._info, z.quantity))).SelectMany(y => y)
+                .OrderBy(x => Random.Range(0f, 1f)).ToDictionary(y => y._info, y => {
+                    var target = y.quantity * (1 + round / 6);
+                    var iW = new IntWrapper(Random.Range(target / 2, target));
+                    return iW;
+                    }));
 
-                                    var dice = Random.Range(0, 100);
-                                    if (dice < 50)
-                                    {
-                                        var go = Instantiate(_enemyPrefab, transform);
-                                        var offset = (Vector2)(Random.insideUnitSphere * .25f);
-                                        go.transform.position = (Vector2)(spawner.transform.position) + offset;
-                                        var enemy = go.GetComponent<EnemyAI>();
-                                        enemy.Info = group.info;
-                                        enemy.NextNode = spawner.NextNode;
-                                        enemy.Offset = offset;
-                                        EaterManager.Instance.UpdateNachoverflowValue(0);
-                                        nbSpawned++;
-                                        yield return new WaitForSeconds(Random.Range(.1f, .3f));
-                                    }
-                                }
+            while (_spawnRemainings.Values.Sum(y => y.Values.Sum(x => x.Int)) > 0)
+            {
+                foreach (var a in _spawnRemainings.Keys)
+                {
+                    var elem = _spawnRemainings[a];
+                    foreach (var type in elem.Keys)
+                    {
+                        if (elem[type].Int > 0 && nbSpawned < 50) // If somehow the player reach that, let's not just kill him right away
+                        {
+                            elem[type].Int--;
+                            var dice = Random.Range(0, 100);
+                            if (dice < 50)
+                            {
+                                var go = Instantiate(_enemyPrefab, transform);
+                                var offset = (Vector2)(Random.insideUnitSphere * .25f);
+                                go.transform.position = (Vector2)(a.transform.position) + offset;
+                                var enemy = go.GetComponent<EnemyAI>();
+                                enemy.Info = type;
+                                enemy.NextNode = a.NextNode;
+                                enemy.Offset = offset;
+                                EaterManager.Instance.UpdateNachoverflowValue(0);
+                                nbSpawned++;
+                                yield return new WaitForSeconds(Random.Range(.1f, .3f));
                             }
                         }
                     }
