@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 17494533}
   - component: {fileID: 17494535}
   - component: {fileID: 17494534}
+  - component: {fileID: 17494536}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: How to Play
+  m_text: '{howToPlay}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
   m_sharedMaterial: {fileID: 3377307803345958292, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
@@ -258,6 +259,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17494532}
   m_CullTransparentMesh: 1
+--- !u!114 &17494536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17494532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08707a1efc6b084a825c74a3da2ee16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &179988488
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,6 +877,7 @@ GameObject:
   - component: {fileID: 655567279}
   - component: {fileID: 655567281}
   - component: {fileID: 655567280}
+  - component: {fileID: 655567282}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -911,7 +925,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: How to Play
+  m_text: '{howToPlay}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
   m_sharedMaterial: {fileID: 3377307803345958292, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
@@ -988,6 +1002,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655567278}
   m_CullTransparentMesh: 1
+--- !u!114 &655567282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655567278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08707a1efc6b084a825c74a3da2ee16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &742714629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,6 +1625,7 @@ GameObject:
   - component: {fileID: 1438262382}
   - component: {fileID: 1438262384}
   - component: {fileID: 1438262383}
+  - component: {fileID: 1438262385}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1646,7 +1673,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credits
+  m_text: '{credits}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
   m_sharedMaterial: {fileID: 3377307803345958292, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
@@ -1723,6 +1750,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438262381}
   m_CullTransparentMesh: 1
+--- !u!114 &1438262385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438262381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08707a1efc6b084a825c74a3da2ee16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1470000347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,6 +1864,7 @@ GameObject:
   - component: {fileID: 1482368098}
   - component: {fileID: 1482368100}
   - component: {fileID: 1482368099}
+  - component: {fileID: 1482368101}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1872,7 +1912,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play
+  m_text: '{play}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
   m_sharedMaterial: {fileID: 3377307803345958292, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
@@ -1949,6 +1989,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482368097}
   m_CullTransparentMesh: 1
+--- !u!114 &1482368101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482368097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08707a1efc6b084a825c74a3da2ee16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1585095877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,6 +2012,7 @@ GameObject:
   - component: {fileID: 1585095878}
   - component: {fileID: 1585095880}
   - component: {fileID: 1585095879}
+  - component: {fileID: 1585095881}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2007,12 +2060,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Add turrets to cover the potato chip with guacamols so they can be eatten
-    with gusto\n\nAll turrets have differents powers\n\n      Shoot really far\n\n     
-    Slow down the potato chips\n\n      Remove the guacamole\n\n      Improve your
-    turrets\n\nDon't let one guy eat all the potato chips but also make sure there
-    aren't too many on the map!\nThe best you handle that, the faster your score
-    will grow!"
+  m_text: "{help1}\n\n{help2}\n\n      {help3}\n\n      {help4}\n\n      {help5}\n\n     
+    {help6}\n\n{help7}\n{help8}"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
   m_sharedMaterial: {fileID: 3377307803345958292, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
@@ -2089,6 +2138,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585095877}
   m_CullTransparentMesh: 1
+--- !u!114 &1585095881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585095877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08707a1efc6b084a825c74a3da2ee16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1609510672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,6 +2611,7 @@ GameObject:
   - component: {fileID: 1934705205}
   - component: {fileID: 1934705207}
   - component: {fileID: 1934705206}
+  - component: {fileID: 1934705208}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2597,17 +2659,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '2D Assets:
+  m_text: '{credits2D}:
 
     Francois Carre
 
 
-    Audio:
+    {creditsAudio}:
 
     Nicolas Roche
 
 
-    Programming:
+    {creditsProgramming}:
 
     Chad
     Estoup--Streiff
@@ -2691,6 +2753,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934705204}
   m_CullTransparentMesh: 1
+--- !u!114 &1934705208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934705204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08707a1efc6b084a825c74a3da2ee16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1962493305
 GameObject:
   m_ObjectHideFlags: 0
@@ -2702,6 +2776,7 @@ GameObject:
   - component: {fileID: 1962493306}
   - component: {fileID: 1962493308}
   - component: {fileID: 1962493307}
+  - component: {fileID: 1962493309}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -2749,7 +2824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credits
+  m_text: '{credits}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
   m_sharedMaterial: {fileID: 3377307803345958292, guid: 2b7b538ffbdba4147ab9c9e2cb7da76e, type: 2}
@@ -2826,6 +2901,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962493305}
   m_CullTransparentMesh: 1
+--- !u!114 &1962493309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962493305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08707a1efc6b084a825c74a3da2ee16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2028029017
 GameObject:
   m_ObjectHideFlags: 0
