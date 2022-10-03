@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LudumDare51
 {
@@ -42,6 +43,11 @@ namespace LudumDare51
             {
                 var level = _nbEaten[e] - average;
                 var lR = level / 10;
+                if (lR >= 6)
+                {
+                    SceneManager.LoadScene("GameOver");
+                    return;
+                }
                 if (lR > maxLevel) maxLevel = lR;
                 e.UpdateSprite(level < 0 ? 0 : level);
             }
@@ -59,7 +65,12 @@ namespace LudumDare51
 
         public void UpdateNachoverflowValue(int modifier)
         {
-            _progText.text = $"Nachoverflow: {GameObject.FindGameObjectsWithTag("Enemy").Length + modifier}%";
+            var length = GameObject.FindGameObjectsWithTag("Enemy").Length + modifier;
+            _progText.text = $"Nachoverflow: {length}%";
+            if (length >= 100)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
         }
     }
 }
