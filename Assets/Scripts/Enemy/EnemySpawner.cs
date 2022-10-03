@@ -88,7 +88,7 @@ namespace LudumDare51.Enemy
 
             foreach (var spawner in GameObject.FindGameObjectsWithTag("Spawner").Select(x => x.GetComponent<Node>()))
             {
-                foreach (var salve in spawner.Salves)
+                foreach (var salve in spawner.Salves.OrderBy(x => Random.Range(0f, 1f))) // Might as well randomize the first one
                 {
                     if ((salve.start_round < 1 || salve.start_round <= round) && (salve.end_round < 1 || salve.end_round >= round))
                     {
