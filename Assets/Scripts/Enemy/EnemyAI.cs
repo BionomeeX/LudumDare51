@@ -23,6 +23,8 @@ namespace LudumDare51.Enemy
 
         private Eater _eater;
 
+        private float _timerHit;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -44,6 +46,14 @@ namespace LudumDare51.Enemy
                 if (_slowDuration <= 0f)
                 {
                     _sr.color = Color.white;
+                }
+            }
+            if (_timerHit > 0f)
+            {
+                _timerHit -= Time.deltaTime;
+                if (_timerHit <= 0f)
+                {
+                    _sr.enabled = true;
                 }
             }
         }
@@ -103,6 +113,11 @@ namespace LudumDare51.Enemy
                     _sr.sprite = _baseSprite;
                     gameObject.layer = LayerMask.NameToLayer("Enemy");
                 }
+            }
+            if (info.Damage > 0)
+            {
+                _timerHit = .1f;
+                _sr.enabled = false;
             }
             if (_health <= 0)
             {
