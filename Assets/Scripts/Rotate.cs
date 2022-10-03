@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LudumDare51
 {
@@ -14,6 +15,11 @@ namespace LudumDare51
         private void Update()
         {
             transform.Rotate(0, 0, _speed * Time.deltaTime);
+        }
+
+        public void PlayMiniGame()
+        {
+            SceneManager.LoadScene("MiniGame");
         }
     }
 }

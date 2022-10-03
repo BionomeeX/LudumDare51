@@ -536,6 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container: {fileID: 1797926715}
   _prefab: {fileID: 880504704387909570, guid: ff4c46447ce0e024586d45bda48e29c9, type: 3}
+  _prefabSpe: {fileID: 880504704387909570, guid: 22a78ac8c87c8fc41b5f3383a1bc2ab7, type: 3}
 --- !u!114 &833955930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1744,7 +1745,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2085570583}
+      - m_Target: {fileID: 520938042}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6

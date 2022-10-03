@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace LudumDare51
@@ -10,7 +9,7 @@ namespace LudumDare51
         private Transform _container;
 
         [SerializeField]
-        private GameObject _prefab;
+        private GameObject _prefab, _prefabSpe;
 
         private void Awake()
         {
@@ -19,15 +18,14 @@ namespace LudumDare51
             {
                 for (int x = -500; x < Screen.width + 500; x += 100)
                 {
-                    var go = Instantiate(_prefab, _container);
+                    var spe = !thumbnail && x == 200 && y == 500;
+                    var go = Instantiate(spe ? _prefabSpe : _prefab, spe ? _container.parent : _container);
                     go.transform.position = new Vector2(x, y);
-                    if (!thumbnail && x == 200 && y == 500)
+                    if (spe)
                     {
+                        go.name = "Special Nachos";
                         go.GetComponent<Image>().color = new Color(.8f, .8f, .8f);
-                        go.GetComponent<Button>().onClick.AddListener(new(() =>
-                        {
-                            SceneManager.LoadScene("MiniGame");
-                        }));
+                        go.transform.SetAsLastSibling();
                     }
                 }
             }

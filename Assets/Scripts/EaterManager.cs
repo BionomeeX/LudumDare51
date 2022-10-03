@@ -43,7 +43,7 @@ namespace LudumDare51
             {
                 var level = _nbEaten[e] - average;
                 var lR = level / 10;
-                if (lR >= 6)
+                if (lR >= 5)
                 {
                     SceneManager.LoadScene("GameOver");
                     return;
