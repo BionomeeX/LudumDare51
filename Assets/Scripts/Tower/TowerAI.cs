@@ -119,10 +119,7 @@ namespace LudumDare51.Tower
             if (collision.CompareTag("Enemy"))
             {
                 var enemy = collision.GetComponent<EnemyAI>();
-                if (enemy.IsAlive)
-                {
-                    _enemiesInRange.Add(enemy);
-                }
+                _enemiesInRange.Add(enemy);
             }
         }
 
