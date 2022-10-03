@@ -18,9 +18,9 @@ namespace LudumDare51.MiniGame
             StartCoroutine(Shoot());
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            _rb.velocity = new Vector2(0f, y * Time.deltaTime * 500f);
+            _rb.velocity = new Vector2(0f, y * Time.fixedDeltaTime * 500f);
         }
 
         public void Move(InputAction.CallbackContext value)

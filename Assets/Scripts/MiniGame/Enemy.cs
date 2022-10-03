@@ -19,7 +19,11 @@ namespace LudumDare51.MiniGame
             {
                 StartCoroutine(Loose());
             }
-            _rb.velocity = new Vector2(-200f, 0f) * Time.deltaTime;
+        }
+
+        private void FixedUpdate()
+        {
+            _rb.velocity = new Vector2(-200f, 0f) * Time.fixedDeltaTime;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

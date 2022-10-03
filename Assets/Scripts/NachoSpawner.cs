@@ -24,7 +24,7 @@ namespace LudumDare51
                     if (spe)
                     {
                         go.name = "Special Nachos";
-                        go.GetComponent<Image>().color = new Color(.7f, .7f, .7f);
+                        go.GetComponent<Image>().color = new Color(.75f, .75f, .75f);
                     }
                 }
             }

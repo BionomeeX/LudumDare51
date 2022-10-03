@@ -36,9 +36,9 @@ namespace LudumDare51.MiniGame
             _text.text = "3";
             yield return new WaitForSeconds(1f);
             _text.text = "2";
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             _text.text = "1";
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             _text.text = "Score: 0";
             float delay = 3f;
             while (true)
@@ -47,7 +47,7 @@ namespace LudumDare51.MiniGame
                 yield return new WaitForSeconds(delay);
                 if (delay > 1f)
                 {
-                    delay -= .1f;
+                    delay -= .2f;
                 }
             }
         }
