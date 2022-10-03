@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts;
 using LudumDare51.Enemy;
+using LudumDare51.Translation;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -32,7 +33,7 @@ namespace LudumDare51
         private void FixedUpdate()
         {
             score += (50 - maxDiff) * Time.deltaTime;
-            _scoreText.text = $"Score: {Mathf.CeilToInt(score)}";
+            _scoreText.text = $"{Translate.Instance.Tr("score")}: {Mathf.CeilToInt(score)}";
         }
 
         private float score;
