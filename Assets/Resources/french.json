@@ -17,5 +17,16 @@
     "help8": "Le mieux du t'en sort avec ça, le plus vite ton score montera !",
 
     "score": "Score",
-    "quickInstructions": "Vite !\nAttrape quelque chose!"
+    "quickInstructions": "Vite !\nAttrape quelque chose!",
+
+    "helpTomato": "Tir rapidement, degats moyen, lunettes de soleil plutot cool",
+    "helpAvocado": "Degats de zone, tir lentement, a manger pendant qu'il est encore un peu ferme",
+    "helpCheese": "Ralenti les enemies, est meilleur en fondue",
+    "helpPepper": "Degats de zone, ne tir pas loin, plus chaud que prevu",
+    "helpOnion": "Enleve la guacamole, personne ne mangerait une chips sans guacamole",
+    "helpGarlic": "Tir loin, gros degats, ne sens pas SI mauvais",
+    "helpLemon": "Tir plein de balles dans tous les sens",
+    "helpBeans": "Tir loin, degats de zone, ils s'appellent tous Joe",
+    "helpHat": "Ameliore une tourelle, la rend aussi deux fois plus cool",
+    "helpTrash": "Se debarrase d'une tourelle, merci de ne pas gacher trop de nourriture"
 }
