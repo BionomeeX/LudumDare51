@@ -14,5 +14,8 @@
     "help5": "Remove the guacamole",
     "help6": "Improve your turrets",
     "help7": "Don't let one guy eat all the potato chips but also make sure there aren't too many on the map!",
-    "help8": "The best you handle that, the faster your score will grow!"
+    "help8": "The best you handle that, the faster your score will grow!",
+
+    "score": "Score",
+    "quickInstructions": "Quick!\nGrab something!"
 }
