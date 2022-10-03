@@ -65,6 +65,7 @@ namespace LudumDare51
                 var lR = level / 10;
                 if (lR >= 5)
                 {
+                    DataKeeper.Instance.FinalScore = Mathf.CeilToInt(score);
                     SceneManager.LoadScene("GameOver");
                     return;
                 }
@@ -89,6 +90,7 @@ namespace LudumDare51
             _progText.text = $"Nachoverflow: {length}%";
             if (length >= 100)
             {
+                DataKeeper.Instance.FinalScore = Mathf.CeilToInt(score);
                 SceneManager.LoadScene("GameOver");
             }
         }
