@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8969524269759483740
 Transform:
   m_ObjectHideFlags: 0
@@ -224,6 +224,7 @@ MonoBehaviour:
   _flameCollider: {fileID: 8872535657593244608}
   _weaponSR: {fileID: 2396718911001174339}
   _hatSR: {fileID: 2243690396658146632}
+  _hasHat: 0
 --- !u!1 &5094544509568069083
 GameObject:
   m_ObjectHideFlags: 0
