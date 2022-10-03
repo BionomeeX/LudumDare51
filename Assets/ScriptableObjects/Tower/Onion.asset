@@ -29,3 +29,6 @@ MonoBehaviour:
   NumberBullets: 1
   TargetDeadPeople: 1
   MinRange: 0
+  BulletSpeed: 10
+  shootSound: {fileID: 8300000, guid: a2f39a9651ecace4b8978fe8b6b77af7, type: 3}
+  touchSound: {fileID: 0}
