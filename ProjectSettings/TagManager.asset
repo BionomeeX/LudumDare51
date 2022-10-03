@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Goal
   - TowerSlot
+  - Spawner
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Bullet
   - TowerSlot
   - Eater
-  - 
+  - BulletSpe
   - 
   - 
   - 

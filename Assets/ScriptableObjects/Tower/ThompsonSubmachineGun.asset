@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: ThompsonSubmachineGun
   m_EditorClassIdentifier: 
   Range: 1
-  ReloadTime: 1
+  ReloadTime: 0.5
   SplashDamageRange: -1
   Bullet: {fileID: 2643107716775651414, guid: 3f5bfad10da39dc4099f853de24764a8, type: 3}
   DamageModifiers: []
   Sprite: {fileID: 589158255, guid: c9857de16a3cce646be20b476550ab25, type: 3}
-  Damage: 3
+  Damage: 6
   SpeedModifierForce: 0
   SpeedModifierDuration: 0
   CleanAll: 0
+  UseFire: 0
+  Spread: 0
+  NumberBullets: 1
+  TargetDeadPeople: 0

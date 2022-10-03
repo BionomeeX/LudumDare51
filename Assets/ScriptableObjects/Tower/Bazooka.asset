@@ -18,7 +18,11 @@ MonoBehaviour:
   Bullet: {fileID: 2643107716775651414, guid: 3f5bfad10da39dc4099f853de24764a8, type: 3}
   DamageModifiers: []
   Sprite: {fileID: 1666605045, guid: edc10f23849999145985c9092cc8892d, type: 3}
-  Damage: 5
+  Damage: 10
   SpeedModifierForce: 0
   SpeedModifierDuration: 0
   CleanAll: 0
+  UseFire: 0
+  Spread: 0
+  NumberBullets: 1
+  TargetDeadPeople: 0

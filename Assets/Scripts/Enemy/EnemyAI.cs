@@ -15,6 +15,7 @@ namespace LudumDare51.Enemy
 
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
+        private Sprite _baseSprite;
 
         private int _health;
         public bool IsAlive { private set; get; } = true;
@@ -26,6 +27,7 @@ namespace LudumDare51.Enemy
         {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
+            _baseSprite = _sr.sprite;
         }
 
         private void Start()
@@ -92,6 +94,13 @@ namespace LudumDare51.Enemy
             {
                 _sr.color = Color.white;
                 _slowDuration = 0f;
+                if (!IsAlive)
+                {
+                    _health = 1;
+                    IsAlive = true;
+                    _sr.sprite = _baseSprite;
+                    gameObject.layer = LayerMask.NameToLayer("Enemy");
+                }
             }
             if (_health <= 0)
             {

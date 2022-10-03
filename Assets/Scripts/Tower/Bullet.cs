@@ -18,6 +18,15 @@ namespace LudumDare51.Tower
             var angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             GetComponent<Rigidbody2D>().velocity = transform.right * Speed;
+            if (Info.TargetDeadPeople)
+            {
+                gameObject.layer = LayerMask.NameToLayer("BulletSpe");
+            }
+        }
+
+        private void Update()
+        {
+            transform.Rotate(0, 0, 1000f * Time.deltaTime);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -38,6 +47,7 @@ namespace LudumDare51.Tower
                             coll.GetComponent<EnemyAI>().TakeDamage(Info);
                         }
                     }
+                    OnClick.Instance.AddExplosion(collision.contacts[0].point);
                 }
             }
             Destroy(gameObject);

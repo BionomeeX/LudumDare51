@@ -14,6 +14,11 @@ namespace LudumDare51
         private Camera _cam;
         private int _gridsize;
 
+        private LineRenderer _lr;
+
+        [SerializeField]
+        private LineRenderer _closeLr;
+
         [SerializeField]
         private GameObject _tower;
 
@@ -25,16 +30,29 @@ namespace LudumDare51
         [SerializeField]
         private TowerInfo[] _info;
 
+        [SerializeField]
+        private GameObject _explosionPrefab;
+
+        public TowerInfo[] Info => _info;
+
         private readonly List<GameObject> _towers = new();
 
         public static OnClick Instance {private set; get;}
 
         private int _layerTower;
 
+        public void AddExplosion(Vector2 pos)
+        {
+            var go = Instantiate(_explosionPrefab, pos, Quaternion.identity);
+            Destroy(go, 0.7f);
+        }
+
         private void Awake()
         {
 
             Instance = this;
+
+            _lr = GetComponent<LineRenderer>();
 
             _cam = Camera.main;
 
@@ -106,83 +124,74 @@ namespace LudumDare51
             }
         }
 
+        private void Update()
+        {
+            if (CurrentTowerInfo != null)
+            {
+                var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.MaxValue, _layerTower);
+                if (hit.collider != null && hit.collider.CompareTag("TowerSlot"))
+                {
+                    _lr.enabled = true;
+
+                    // https://forum.unity.com/threads/drawing-simple-pixel-perfect-shapes-circles-lines-etc-like-in-gamemaker.479181/
+                    var thetaScale = 0.01f;
+                    float sizeValue = (2.0f * Mathf.PI) / thetaScale;
+                    var size = (int)sizeValue;
+                    size++;
+                    _lr.positionCount = size;
+                    var p = hit.collider.transform.position;
+
+                    var r = CurrentTowerInfo.Range * 2f;
+                    Vector3 pos;
+                    float theta = 0f;
+                    for (int i = 0; i < size; i++)
+                    {
+                        theta += (2.0f * Mathf.PI * thetaScale);
+                        float x = r * Mathf.Cos(theta) + p.x;
+                        float y = r * Mathf.Sin(theta) + p.y;
+                        pos = new Vector3(x, y, 0);
+                        _lr.SetPosition(i, pos);
+                    }
+
+                    _closeLr.enabled = CurrentTowerInfo.MinRange > 0f;
+                    if (CurrentTowerInfo.MinRange > 0f)
+                    {
+                        _closeLr.positionCount = size;
+                        var cr = CurrentTowerInfo.MinRange * 2f;
+                        theta = 0f;
+                        for (int i = 0; i < size; i++)
+                        {
+                            theta += (2.0f * Mathf.PI * thetaScale);
+                            float x = cr * Mathf.Cos(theta) + p.x;
+                            float y = cr * Mathf.Sin(theta) + p.y;
+                            pos = new Vector3(x, y, 0);
+                            _closeLr.SetPosition(i, pos);
+                        }
+                    }
+                }
+                else
+                {
+                    _lr.enabled = false;
+                    _closeLr.enabled = false;
+                }
+            }
+            else
+            {
+                _lr.enabled = false;
+                _closeLr.enabled = false;
+            }
+        }
 
         public void Click(InputAction.CallbackContext value)
         {
             if (value.performed)
             {
                 var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.MaxValue, _layerTower);
-                if (hit.collider != null)
+                if (hit.collider != null && hit.collider.CompareTag("TowerSlot"))
                 {
-                    if (hit.collider.CompareTag("TowerSlot"))
-                    {
-                        AddTower(hit.collider.transform.position);
-                    }
-                }  
+                    AddTower(hit.collider.transform.position);
+                }
             }
-            // if (value.performed)
-            // {
-            //     if (_radialMenu.gameObject.activeInHierarchy)
-            //     {
-            //         _radialMenu.Click();
-            //         _radialMenu.gameObject.SetActive(false);
-            //     }
-            //     else
-            //     {
-            //         var pos = Mouse.current.position.ReadValue();
-            //         pos /= _gridsize;
-            //         pos[0] = Mathf.Floor(pos[0]);
-            //         pos[1] = Mathf.Floor(pos[1]);
-
-            //         // Compute world position of the center of the case where the mouse clicked
-            //         var posOnTheWorld = _cam.ScreenToWorldPoint(
-            //             new Vector3(
-            //                 pos[0] * _gridsize + _gridsize / 2,
-            //                 pos[1] * _gridsize + _gridsize / 2,
-            //                 _cam.nearClipPlane
-            //             )
-            //         );
-
-            //         var towerHere = WhichTowerExistsHere(posOnTheWorld);
-            //         // check if there is already a turret
-            //         if (towerHere != null)
-            //         {
-            //             ClickOnATower(towerHere, posOnTheWorld);
-            //         }
-            //         // Tower existing, modify tower type
-            //         else
-            //         {
-            //             ClickOnEmptyCase(posOnTheWorld);
-            //         }
-            //     }
-            // }
-        }
-
-        private void OnDrawGizmos()
-        {
-            // if (EditorApplication.isPlaying)
-            // {
-            //     var x = 1 + Mathf.FloorToInt((_cam.pixelWidth - 1) / _gridsize);
-            //     var y = 1 + Mathf.FloorToInt((_cam.pixelHeight - 1) / _gridsize);
-            //     Gizmos.color = new Color(1f, 1f, 1f, .5f);
-
-            //     for (var i = 0; i < x; ++i)
-            //     {
-
-            //         var start = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, 0, _cam.nearClipPlane));
-            //         var stop = _cam.ScreenToWorldPoint(new Vector3(i * _gridsize, _cam.pixelHeight, _cam.nearClipPlane));
-
-            //         Gizmos.DrawLine(start, stop);
-            //     }
-            //     for (var i = 0; i < y; ++i)
-            //     {
-
-            //         var start = _cam.ScreenToWorldPoint(new Vector3(0, i * _gridsize, _cam.nearClipPlane));
-            //         var stop = _cam.ScreenToWorldPoint(new Vector3(_cam.pixelWidth, i * _gridsize, _cam.nearClipPlane));
-
-            //         Gizmos.DrawLine(start, stop);
-            //     }
-            // }
         }
 
         public void SetTowerInfo(int infoIndex)
