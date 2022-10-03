@@ -10,7 +10,7 @@ namespace LudumDare51
     public class EaterManager : MonoBehaviour
     {
         [SerializeField]
-        private TMP_Text _progText;
+        private TMP_Text _progText, _scoreText;
 
         [SerializeField]
         private AudioSource _bgm;
@@ -25,6 +25,14 @@ namespace LudumDare51
             Instance = this;
         }
 
+        private void FixedUpdate()
+        {
+            score += (50 - maxDiff) * Time.deltaTime;
+            _scoreText.text = $"Score: {Mathf.CeilToInt(score)}";
+        }
+
+        private float score;
+
         private readonly Dictionary<Eater, int> _nbEaten = new();
 
         public void Register(Eater eater)
@@ -33,15 +41,21 @@ namespace LudumDare51
         }
 
         private int oldLevel = 0;
+        private int maxDiff = 0;
         public void AddEat(Eater eater)
         {
             _nbEaten[eater]++;
 
             var average = _nbEaten.Values.Sum() / _nbEaten.Count;
             var maxLevel = 0;
+            maxDiff = 0;
             foreach (var e in _nbEaten.Keys)
             {
                 var level = _nbEaten[e] - average;
+                if (level > maxDiff)
+                {
+                    maxDiff = level;
+                }
                 var lR = level / 10;
                 if (lR >= 5)
                 {

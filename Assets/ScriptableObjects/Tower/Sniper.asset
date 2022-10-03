@@ -23,7 +23,7 @@ MonoBehaviour:
   Damage: 20
   SpeedModifierForce: 0
   SpeedModifierDuration: 0
-  CleanAll: 1
+  CleanAll: 0
   UseFire: 0
   Spread: 0
   NumberBullets: 1

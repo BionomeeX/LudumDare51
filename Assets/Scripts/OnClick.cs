@@ -128,7 +128,7 @@ namespace LudumDare51
                 else if (slot.Turret != null && CurrentTowerInfo == null)
                 {
                     target = slot.Turret.Info;
-                    if (slot.Turret.HasHat)
+                    if (slot.Turret.HasHat && !slot.Turret.Info.UseFire)
                     {
                         m = 1.5f;
                     }
