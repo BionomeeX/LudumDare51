@@ -765,8 +765,8 @@ MonoBehaviour:
   _itemPick: {fileID: 2038083112}
   _itemPickContainer: {fileID: 751420598}
   _itemPrefab: {fileID: 4355480477628413539, guid: 71bef9dfdcfc3fa4aa6b7fba576b181e, type: 3}
-  _trashIcon: {fileID: 0}
-  _hatIcon: {fileID: 0}
+  _trashIcon: {fileID: 249729813, guid: aeb2547f69ed0db4380d39c4842bdb94, type: 3}
+  _hatIcon: {fileID: 114445848, guid: aeb2547f69ed0db4380d39c4842bdb94, type: 3}
 --- !u!114 &283183018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8774715959138720406, guid: 87483fe30eb3fdd46b89b0b078a09237, type: 3}
