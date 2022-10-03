@@ -27,6 +27,9 @@ namespace LudumDare51.Enemy
 
         private int[] _inventory;
 
+        [SerializeField]
+        private TMP_Text _textTimer;
+
         private int round;
         private int _nbDelete = 0;
         private int _nbHat = 0;
@@ -120,9 +123,14 @@ namespace LudumDare51.Enemy
         {
             while (true)
             {
-                yield return Spawn();
+                StartCoroutine(Spawn());
                 round++;
-                yield return new WaitForSeconds(10f);
+                for (int i = 10; i >= 0; i--)
+                {
+                    _textTimer.text = $"{i}";
+                    yield return new WaitForSeconds(1);
+                }
+                _textTimer.text = "0";
             }
         }
 
