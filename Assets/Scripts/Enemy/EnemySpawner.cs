@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using LudumDare51.SO;
+using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -29,6 +30,13 @@ namespace LudumDare51.Enemy
 
         [SerializeField]
         private TMP_Text _textTimer;
+
+        [Header("Enemies")]
+        [SerializeField]
+        private EnemyInfo _normalEnemy;
+
+        [SerializeField]
+        private EnemyInfo _onigiri, _illuminati;
 
         private int round;
         private int _nbDelete = 0;
@@ -99,6 +107,15 @@ namespace LudumDare51.Enemy
                         {
                             for (int i = 0; i < group.quantity + (round - 1); i++)
                             {
+                                var info = _normalEnemy;
+
+                                var dice = Random.Range(0, 100);
+                                if (round > 5)
+                                {
+                                    if (dice < 5) info = _onigiri;
+                                    else if (dice < 10) info = _illuminati;
+                                }
+
                                 if (nbSpawned < 50) // If somehow the player reach that, let's not just kill him right away
                                 {
                                     var go = Instantiate(_enemyPrefab, transform);

@@ -750,6 +750,9 @@ MonoBehaviour:
   _trashIcon: {fileID: 249729813, guid: aeb2547f69ed0db4380d39c4842bdb94, type: 3}
   _hatIcon: {fileID: 114445848, guid: aeb2547f69ed0db4380d39c4842bdb94, type: 3}
   _textTimer: {fileID: 590028834}
+  _normalEnemy: {fileID: 11400000, guid: 2834ed77a17599f499ef75af94e5e0f0, type: 2}
+  _onigiri: {fileID: 11400000, guid: 7fc0621a8ae733543bab91ae2f61faeb, type: 2}
+  _illuminati: {fileID: 11400000, guid: 30076be9d93952f4c8b9b85d10577ad1, type: 2}
 --- !u!114 &283183018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8774715959138720406, guid: 87483fe30eb3fdd46b89b0b078a09237, type: 3}
