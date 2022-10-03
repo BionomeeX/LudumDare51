@@ -1,4 +1,5 @@
-﻿using LudumDare51.Enemy;
+﻿using Assets.Scripts;
+using LudumDare51.Enemy;
 using LudumDare51.SO;
 using UnityEngine;
 
@@ -34,6 +35,8 @@ namespace LudumDare51.Tower
         {
             if (collision.collider.CompareTag("Enemy"))
             {
+                if (Info.touchSound != null)
+                    SFXManager.Instance.PlaySound(Info.touchSound);
                 if (Info.SplashDamageRange == -1)
                 {
                     collision.collider.GetComponent<EnemyAI>().TakeDamage(Info, HasHat);

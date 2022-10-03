@@ -24,5 +24,7 @@ namespace LudumDare51.SO
         public bool TargetDeadPeople;
         public float MinRange;
         public float BulletSpeed = 10f;
+        public AudioClip shootSound;
+        public AudioClip touchSound;
     }
 }
