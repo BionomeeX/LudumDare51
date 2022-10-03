@@ -122,7 +122,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 49
         width: 80
         height: 49
       alignment: 0
@@ -143,7 +143,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 0
+        y: 49
         width: 80
         height: 49
       alignment: 0
@@ -164,7 +164,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 0
+        y: 49
         width: 80
         height: 49
       alignment: 0
@@ -185,7 +185,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 240
-        y: 0
+        y: 49
         width: 80
         height: 49
       alignment: 0
@@ -206,7 +206,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 0
+        y: 49
         width: 80
         height: 49
       alignment: 0
@@ -218,6 +218,111 @@ TextureImporter:
       bones: []
       spriteID: 4c6332a0ab57a014b96363363e08cfa0
       internalID: 645953514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nacho_eater-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bec5965c62430b141a99e7819e2b8a09
+      internalID: -748143763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nacho_eater-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ade72531e0044e7428328e6d0898bc1e
+      internalID: 99965078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nacho_eater-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f80d2be3f5a1cc3439abae1eb665b778
+      internalID: 1427408024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nacho_eater-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21db596c0771aec4dad5787b060b1a7e
+      internalID: -174605165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nacho_eater-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 80
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1062475d3f96f0645891988e4979b32d
+      internalID: 856940435
       vertices: []
       indices: 
       edges: []
@@ -235,9 +340,14 @@ TextureImporter:
     nameFileIdTable:
       nacho_eater-Sheet_4: 645953514
       nacho_eater-Sheet_1: 1186849512
+      nacho_eater-Sheet_9: 856940435
+      nacho_eater-Sheet_7: 1427408024
+      nacho_eater-Sheet_5: -748143763
       nacho_eater-Sheet_0: -148141670
       nacho_eater-Sheet_2: -437927913
       nacho_eater-Sheet_3: -1958507344
+      nacho_eater-Sheet_8: -174605165
+      nacho_eater-Sheet_6: 99965078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
