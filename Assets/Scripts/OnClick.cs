@@ -30,6 +30,9 @@ namespace LudumDare51
         [SerializeField]
         private TowerInfo[] _info;
 
+        [SerializeField]
+        private GameObject _explosionPrefab;
+
         public TowerInfo[] Info => _info;
 
         private readonly List<GameObject> _towers = new();
@@ -37,6 +40,12 @@ namespace LudumDare51
         public static OnClick Instance {private set; get;}
 
         private int _layerTower;
+
+        public void AddExplosion(Vector2 pos)
+        {
+            var go = Instantiate(_explosionPrefab, pos, Quaternion.identity);
+            Destroy(go, 0.7f);
+        }
 
         private void Awake()
         {

@@ -80395,6 +80395,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9c3a55644a912eb4cbafc6f65091ac28, type: 2}
   - {fileID: 11400000, guid: 3d6e89eee93b21d4c9c120b433c4c39b, type: 2}
   - {fileID: 11400000, guid: c8227f27fabca134888bd39d97cfeee1, type: 2}
+  _explosionPrefab: {fileID: 5930856417573016642, guid: f714745fd399ffe44a3bf01b7aee260f, type: 3}
 --- !u!4 &1017494322
 Transform:
   m_ObjectHideFlags: 0

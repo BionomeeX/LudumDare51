@@ -38,6 +38,7 @@ namespace LudumDare51.Tower
                             coll.GetComponent<EnemyAI>().TakeDamage(Info);
                         }
                     }
+                    OnClick.Instance.AddExplosion(collision.contacts[0].point);
                 }
             }
             Destroy(gameObject);
