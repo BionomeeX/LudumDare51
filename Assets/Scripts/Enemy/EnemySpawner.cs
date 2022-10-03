@@ -84,6 +84,8 @@ namespace LudumDare51.Enemy
                 }
             }
 
+            var nbSpawned = 0;
+
             foreach (var spawner in GameObject.FindGameObjectsWithTag("Spawner").Select(x => x.GetComponent<Node>()))
             {
                 foreach (var salve in spawner.Salves)
@@ -92,17 +94,21 @@ namespace LudumDare51.Enemy
                     {
                         foreach (var group in salve.groups)
                         {
-                            for (int i = 0; i < group.quantity; i++)
+                            for (int i = 0; i < group.quantity + (round - 1); i++)
                             {
-                                var go = Instantiate(_enemyPrefab, transform);
-                                var offset = (Vector2)(Random.insideUnitSphere * .25f);
-                                go.transform.position = (Vector2)(spawner.transform.position) + offset;
-                                var enemy = go.GetComponent<EnemyAI>();
-                                enemy.Info = group.info;
-                                enemy.NextNode = spawner.NextNode;
-                                enemy.Offset = offset;
-                                EaterManager.Instance.UpdateNachoverflowValue(0);
-                                yield return new WaitForSeconds(Random.Range(.1f, .3f));
+                                if (nbSpawned < 50) // If somehow the player reach that, let's not just kill him right away
+                                {
+                                    var go = Instantiate(_enemyPrefab, transform);
+                                    var offset = (Vector2)(Random.insideUnitSphere * .25f);
+                                    go.transform.position = (Vector2)(spawner.transform.position) + offset;
+                                    var enemy = go.GetComponent<EnemyAI>();
+                                    enemy.Info = group.info;
+                                    enemy.NextNode = spawner.NextNode;
+                                    enemy.Offset = offset;
+                                    EaterManager.Instance.UpdateNachoverflowValue(0);
+                                    nbSpawned++;
+                                    yield return new WaitForSeconds(Random.Range(.1f, .3f));
+                                }
                             }
                         }
                     }
