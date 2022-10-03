@@ -126,6 +126,18 @@ namespace LudumDare51.Enemy
             UpdateInventory();
         }
 
+        public void RemoveDelete()
+        {
+            _nbDelete--;
+            UpdateInventory();
+        }
+
+        public void RemoveHat()
+        {
+            _nbHat--;
+            UpdateInventory();
+        }
+
         private void UpdateInventory()
         {
             for (int i = 0; i < _inventory.Length; i++)
@@ -133,15 +145,16 @@ namespace LudumDare51.Enemy
                 _buttonInfo[i].gameObject.SetActive(_inventory[i] > 0);
                 _buttonInfo[i].GetComponentInChildren<TMP_Text>().text = $"{_inventory[i]}";
             }
+            var iM = OnClick.Instance.Info.Length;
             if (_nbDelete > 0)
             {
-                _buttonInfo[_buttonInfo.Length].gameObject.SetActive(_inventory[_buttonInfo.Length] > 0);
-                _buttonInfo[_buttonInfo.Length].GetComponentInChildren<TMP_Text>().text = $"{_inventory[_buttonInfo.Length]}";
+                _buttonInfo[iM].gameObject.SetActive(_inventory[iM] > 0);
+                _buttonInfo[iM].GetComponentInChildren<TMP_Text>().text = $"{_inventory[iM]}";
             }
             if (_nbHat > 0)
             {
-                _buttonInfo[_buttonInfo.Length + 1].gameObject.SetActive(_inventory[_buttonInfo.Length + 1] > 0);
-                _buttonInfo[_buttonInfo.Length + 1].GetComponentInChildren<TMP_Text>().text = $"{_inventory[_buttonInfo.Length + 1]}";
+                _buttonInfo[iM + 1].gameObject.SetActive(_inventory[iM + 1] > 0);
+                _buttonInfo[iM + 1].GetComponentInChildren<TMP_Text>().text = $"{_inventory[iM + 1]}";
             }
         }
     }

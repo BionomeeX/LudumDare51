@@ -115,8 +115,8 @@ namespace LudumDare51
                 var slot = hit.collider.GetComponent<TurretSpot>();
                 TowerInfo target;
                 float m = 1f;
-                if (slot == null && CurrentTowerInfo != null) target = CurrentTowerInfo;
-                else if (slot != null && CurrentTowerInfo == null)
+                if (slot.Turret == null && CurrentTowerInfo != null) target = CurrentTowerInfo;
+                else if (slot.Turret != null && CurrentTowerInfo == null)
                 {
                     target = slot.Turret.Info;
                     if (slot.Turret.HasHat)
@@ -190,11 +190,13 @@ namespace LudumDare51
                             Destroy(spot.Turret.gameObject);
                             spot.Turret = null;
                             _currSelection = CurrSelection.None;
+                            EnemySpawner.Instance.RemoveDelete();
                         }
                         else if (_currSelection == CurrSelection.Hat && !spot.Turret.HasHat)
                         {
                             spot.Turret.SetHat();
                             _currSelection = CurrSelection.None;
+                            EnemySpawner.Instance.RemoveHat();
                         }
                     }
                 }

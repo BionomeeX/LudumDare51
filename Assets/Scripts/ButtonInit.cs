@@ -14,7 +14,14 @@ namespace LudumDare51
         public void Init(Action callback, Sprite sprite, Sprite weaponSprite)
         {
             _image.sprite = sprite;
-            _weaponSprite.sprite = weaponSprite;
+            if (weaponSprite == null)
+            {
+                _weaponSprite.enabled = false;
+            }
+            else
+            {
+                _weaponSprite.sprite = weaponSprite;
+            }
             GetComponent<Button>().onClick.AddListener(new(callback));
         }
     }
