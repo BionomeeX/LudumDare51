@@ -1,1 +1,21 @@
-{}
+{
+    "play": "Jouer",
+    "howToPlay": "Comment Jouer",
+    "credits": "Credits",
+
+    "credits2D": "Assets 2D",
+    "creditsAudio": "Audio",
+    "creditsProgramming": "Programmation",
+
+    "help1": "Ajoute des tourelles pour couvrir les chips de guacamole pour qu'elles puissent etre manger avec gusto",
+    "help2": "Toutes les tourelles ont des pouvoir differents",
+    "help3": "Tir tres loin",
+    "help4": "Ralenti les chips",
+    "help5": "Enleve le guacamole",
+    "help6": "Ameliore les tourelles",
+    "help7": "Ne laisse pas un gars mange toutes les chips et soit sur qu'il y en ait pas trop sur la carte !",
+    "help8": "Le mieux du t'en sort avec ça, le plus vite ton score montera !",
+
+    "score": "Score",
+    "quickInstructions": "Vite !\nAttrape quelque chose!"
+}
