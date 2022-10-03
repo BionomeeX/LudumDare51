@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb5680213487304fbab20ce71a4977b, type: 3}
+  m_Name: Onigiri
+  m_EditorClassIdentifier: 
+  Speed: 50
+  BaseHealth: 350
+  Type: 0
+  SpriteAlive: {fileID: 380180118, guid: 212d3ae0b81fb15449b4431cd7f1348f, type: 3}
+  SpriteDead: {fileID: 1978882363, guid: 212d3ae0b81fb15449b4431cd7f1348f, type: 3}
