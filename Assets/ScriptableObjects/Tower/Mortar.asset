@@ -27,3 +27,4 @@ MonoBehaviour:
   NumberBullets: 1
   TargetDeadPeople: 0
   MinRange: 2.5
+  ShotSound: {fileID: 0}

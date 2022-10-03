@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireChildPivot: {fileID: 5094544509568069083}
   _flameCollider: {fileID: 8872535657593244608}
+  _bgm: {fileID: 0}
 --- !u!1 &5094544509568069083
 GameObject:
   m_ObjectHideFlags: 0

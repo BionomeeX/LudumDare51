@@ -1,4 +1,5 @@
-﻿using LudumDare51.Enemy;
+﻿using Assets.Scripts;
+using LudumDare51.Enemy;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -18,6 +19,9 @@ namespace LudumDare51
         [SerializeField]
         private AudioClip[] _clips;
 
+        [SerializeField]
+        private AudioClip _eat_sound;
+
         public static EaterManager Instance { get; private set; }
 
         private void Awake()
@@ -36,6 +40,8 @@ namespace LudumDare51
         public void AddEat(Eater eater)
         {
             _nbEaten[eater]++;
+
+            SFXManager.Instance.PlaySound(_eat_sound);
 
             var average = _nbEaten.Values.Sum() / _nbEaten.Count;
             var maxLevel = 0;

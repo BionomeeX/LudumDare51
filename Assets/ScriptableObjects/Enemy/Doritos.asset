@@ -17,3 +17,5 @@ MonoBehaviour:
   Type: 0
   SpriteAlive: {fileID: -13170734, guid: fb54c5cfc2a36d94e8f943bc54fe095c, type: 3}
   SpriteDead: {fileID: -721525760, guid: fb54c5cfc2a36d94e8f943bc54fe095c, type: 3}
+  sounds:
+  - {fileID: 8300000, guid: df4efd7582339554da02a31464156fbc, type: 3}

@@ -22,3 +22,9 @@ MonoBehaviour:
   SpeedModifierForce: 0.5
   SpeedModifierDuration: 2
   CleanAll: 0
+  UseFire: 0
+  Spread: 0
+  NumberBullets: 1
+  TargetDeadPeople: 0
+  MinRange: 0
+  ShotSound: {fileID: 8300000, guid: 309cd5a753b39f84aa91da255ab5ee5b, type: 3}

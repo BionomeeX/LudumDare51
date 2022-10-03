@@ -26,3 +26,5 @@ MonoBehaviour:
   Spread: 0
   NumberBullets: 1
   TargetDeadPeople: 0
+  MinRange: 0
+  ShotSound: {fileID: 8300000, guid: d272987f056308041a7f156125eea059, type: 3}

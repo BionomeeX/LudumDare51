@@ -10,5 +10,6 @@ namespace LudumDare51.SO
         public int BaseHealth;
         public EnemyType Type;
         public Sprite SpriteAlive, SpriteDead;
+        public AudioClip[] sounds;
     }
 }

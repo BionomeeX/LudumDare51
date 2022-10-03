@@ -96,7 +96,7 @@ namespace LudumDare51.Enemy
                 _slowDuration = 0f;
                 if (!IsAlive)
                 {
-                    _health = 1;
+                    _health = Info.BaseHealth/2;
                     IsAlive = true;
                     _sr.sprite = _baseSprite;
                     gameObject.layer = LayerMask.NameToLayer("Enemy");
