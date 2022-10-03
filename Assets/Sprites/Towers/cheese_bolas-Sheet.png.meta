@@ -122,7 +122,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -143,7 +143,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -164,7 +164,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -176,6 +176,27 @@ TextureImporter:
       bones: []
       spriteID: f35f6e58ac503994b9b8fe30adba240a
       internalID: 690979580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cheese_bolas-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b7c274a5b741914c87b4d4cf16d3e01
+      internalID: -166103880
       vertices: []
       indices: 
       edges: []
@@ -194,6 +215,7 @@ TextureImporter:
       cheese_bolas-Sheet_0: -1368650298
       cheese_bolas-Sheet_2: 690979580
       cheese_bolas-Sheet_1: -354583241
+      cheese_bolas-Sheet_3: -166103880
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

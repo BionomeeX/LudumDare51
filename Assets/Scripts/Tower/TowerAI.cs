@@ -22,7 +22,7 @@ namespace LudumDare51.Tower
         private bool _canShoot = true;
 
         [SerializeField]
-        private SpriteRenderer _weaponSR, _hatSR;
+        private SpriteRenderer _weaponSR, _hatSR, _blushSR;
 
         public bool _hasHat = false;
 
@@ -45,6 +45,7 @@ namespace LudumDare51.Tower
             _weaponSR.sprite = Info.WeaponSprite;
             _hatSR.sprite = Info.Hat;
             _hatSR.enabled = false;
+            _blushSR.enabled = false;
         }
 
         private void Update()
