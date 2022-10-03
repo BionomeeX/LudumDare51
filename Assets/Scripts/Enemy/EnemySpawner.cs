@@ -58,7 +58,7 @@ namespace LudumDare51.Enemy
                     _inventory[index]++;
                     _itemPick.SetActive(false);
                     UpdateInventory();
-                }, randButton.Sprite);
+                }, randButton.Sprite, randButton.WeaponSprite);
             }
 
             foreach (var spawner in GameObject.FindGameObjectsWithTag("Spawner").Select(x => x.GetComponent<Node>()))
