@@ -35,12 +35,12 @@ namespace LudumDare51.MiniGame
         private IEnumerator Loose()
         {
             var p = GameObject.FindGameObjectWithTag("Player");
-            if (p.activeInHierarchy)
+            if (p != null && p.activeInHierarchy)
             {
                 p.SetActive(false);
                 Spawner.Instance.Loose();
                 yield return new WaitForSeconds(2f);
-                SceneManager.LoadScene("MainMenu");
+                SceneManager.LoadScene("Menu");
             }
         }
     }

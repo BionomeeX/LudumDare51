@@ -45,7 +45,7 @@ namespace LudumDare51.MiniGame
             {
                 Instantiate(_prefab, new Vector2(transform.position.x, Random.Range(-4f, 4f)), Quaternion.identity);
                 yield return new WaitForSeconds(delay);
-                if (delay > .5f)
+                if (delay > 1f)
                 {
                     delay -= .1f;
                 }
