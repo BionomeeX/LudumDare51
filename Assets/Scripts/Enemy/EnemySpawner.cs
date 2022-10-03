@@ -146,15 +146,15 @@ namespace LudumDare51.Enemy
                 _buttonInfo[i].GetComponentInChildren<TMP_Text>().text = $"{_inventory[i]}";
             }
             var iM = OnClick.Instance.Info.Length;
+            _buttonInfo[iM].gameObject.SetActive(_nbDelete > 0);
             if (_nbDelete > 0)
             {
-                _buttonInfo[iM].gameObject.SetActive(_inventory[iM] > 0);
-                _buttonInfo[iM].GetComponentInChildren<TMP_Text>().text = $"{_inventory[iM]}";
+                _buttonInfo[iM].GetComponentInChildren<TMP_Text>().text = $"{_nbDelete}";
             }
+            _buttonInfo[iM + 1].gameObject.SetActive(_nbHat > 0);
             if (_nbHat > 0)
             {
-                _buttonInfo[iM + 1].gameObject.SetActive(_inventory[iM + 1] > 0);
-                _buttonInfo[iM + 1].GetComponentInChildren<TMP_Text>().text = $"{_inventory[iM + 1]}";
+                _buttonInfo[iM + 1].GetComponentInChildren<TMP_Text>().text = $"{_nbHat}";
             }
         }
     }
