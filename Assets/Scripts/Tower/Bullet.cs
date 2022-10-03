@@ -20,6 +20,11 @@ namespace LudumDare51.Tower
             GetComponent<Rigidbody2D>().velocity = transform.right * Speed;
         }
 
+        private void Update()
+        {
+            transform.Rotate(0, 0, 1000f * Time.deltaTime);
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.collider.CompareTag("Enemy"))
