@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4284773063990692274}
   - component: {fileID: 194869517}
+  - component: {fileID: 1069122023742943356}
   m_Layer: 9
   m_Name: TowerSlot
   m_TagString: TowerSlot
@@ -115,7 +116,7 @@ Transform:
   m_Children:
   - {fileID: 341661405605758494}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &194869517
 CircleCollider2D:
@@ -152,3 +153,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!114 &1069122023742943356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626046341778689810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0205593ceca879e4cbdb8bbcc917ce27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -107,7 +107,7 @@ namespace LudumDare51
         }
 
 
-        public void AddTower(Vector3 position)
+        public void AddTower(Vector3 position, TurretSpot spot)
         {
             if (CurrentTowerInfo != null) // TODO: check if there is no turret already there
             {
@@ -117,9 +117,11 @@ namespace LudumDare51
                     Quaternion.identity
                 );
 
-                newtower.GetComponent<TowerAI>().Info = CurrentTowerInfo;
+                var ai = newtower.GetComponent<TowerAI>();
+                ai.Info = CurrentTowerInfo;
                 _towers.Add(newtower);
                 EnemySpawner.Instance.RemoveTower(Array.IndexOf(_info, CurrentTowerInfo));
+                spot.Turret = ai;
                 CurrentTowerInfo = null;
             }
         }
@@ -187,9 +189,9 @@ namespace LudumDare51
             if (value.performed)
             {
                 var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.MaxValue, _layerTower);
-                if (hit.collider != null && hit.collider.CompareTag("TowerSlot"))
+                if (hit.collider != null && hit.collider.CompareTag("TowerSlot") && hit.collider.GetComponent<TurretSpot>().Turret == null)
                 {
-                    AddTower(hit.collider.transform.position);
+                    AddTower(hit.collider.transform.position, hit.collider.GetComponent<TurretSpot>());
                 }
             }
         }
