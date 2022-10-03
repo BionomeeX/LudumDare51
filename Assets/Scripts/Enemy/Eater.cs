@@ -14,6 +14,9 @@ namespace LudumDare51.Enemy
         [SerializeField]
         private TMP_Text _textInfo;
 
+        [SerializeField]
+        private GameObject _textContainer;
+
         private SpriteRenderer _sr;
 
         public Node Goal => _target;
@@ -36,6 +39,7 @@ namespace LudumDare51.Enemy
         public void UpdateSprite(int score)
         {
             _sr.sprite = _angrySprites[score / 10];
+            _textContainer.SetActive(score != 0);
             if (score == 0)
             {
                 _textInfo.text = string.Empty;
